@@ -1,0 +1,191 @@
+import {
+  Phone,
+  Mail,
+  MapPin,
+  MessageCircle,
+} from "lucide-react";
+
+const WHATSAPP_NUMBER = "919787747775";
+
+const quickLinks = [
+  { label: "Properties", href: "#properties" },
+  { label: "Services", href: "#services" },
+  { label: "About Us", href: "#about" },
+  { label: "Contact", href: "#contact" },
+];
+
+const services = [
+  "Bank NPA Properties",
+  "All Bank Loans",
+  "Property Consultancy",
+  "Finance & Investment",
+  "Debt Recovery Agency (DRA)",
+];
+
+export default function Footer() {
+  const openWhatsApp = () => {
+    const message =
+      "Hello SGP Promoters, I would like to know more about your services.";
+
+    window.open(
+      `https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(message)}`,
+      "_blank",
+      "noopener,noreferrer"
+    );
+  };
+
+  return (
+    <footer className="relative w-full bg-[#171C25] text-gray-300">
+      {/* Main footer */}
+      <div className="w-full px-5 pb-5 pt-10 sm:px-8 sm:pb-6 sm:pt-12">
+        {/* Keep the same centered container for all footer content */}
+        <div className="mx-auto w-full max-w-[1330px]">
+          {/* Footer columns */}
+          <div className="grid grid-cols-1 gap-8 sm:grid-cols-2 sm:gap-x-10 sm:gap-y-10 lg:grid-cols-[1.15fr_1fr_1.05fr_1fr] lg:gap-12">
+            {/* Brand */}
+            <div className="min-w-0">
+              <a
+                href="#home"
+                aria-label="SGP Promoters Home"
+                className="inline-flex items-center gap-3"
+              >
+                {/* Logo aligned with the navbar logo */}
+                <div className="flex h-12 w-12 shrink-0 items-center justify-center overflow-hidden rounded-xl border border-gray-100 bg-white">
+                  <span className="text-base font-bold text-[#C7A65A]">
+                    SGP
+                  </span>
+                </div>
+
+                <span className="whitespace-nowrap text-base font-bold tracking-tight text-white">
+                  SGP Promoters
+                </span>
+              </a>
+
+              <p className="mt-4 max-w-[290px] text-[15px] leading-[1.7] text-gray-400">
+                Your trusted partner for verified bank properties,
+                NPA deals, and comprehensive financial services.
+              </p>
+            </div>
+
+            {/* Quick links */}
+            <div className="min-w-0">
+              <h3 className="mb-4 text-base font-bold text-white">
+                Quick Links
+              </h3>
+
+              <ul className="space-y-2.5">
+                {quickLinks.map((link) => (
+                  <li key={link.label}>
+                    <a
+                      href={link.href}
+                      className="text-[15px] leading-6 text-gray-400 transition-colors duration-200 hover:text-[#FFBE00]"
+                    >
+                      {link.label}
+                    </a>
+                  </li>
+                ))}
+              </ul>
+            </div>
+
+            {/* Services */}
+            <div className="min-w-0">
+              <h3 className="mb-4 text-base font-bold text-white">
+                Our Services
+              </h3>
+
+              <ul className="space-y-2.5">
+                {services.map((service) => (
+                  <li key={service}>
+                    <a
+                      href="#services"
+                      className="text-[15px] leading-6 text-gray-400 transition-colors duration-200 hover:text-[#FFBE00]"
+                    >
+                      {service}
+                    </a>
+                  </li>
+                ))}
+              </ul>
+            </div>
+
+            {/* Contact */}
+            <div className="min-w-0">
+              <h3 className="mb-4 text-base font-bold text-white">
+                Contact Us
+              </h3>
+
+              <div className="space-y-2.5 text-[15px] leading-[1.5] text-gray-400">
+                <a
+                  href="tel:+919787747775"
+                  className="flex items-start gap-3 transition-colors hover:text-white"
+                >
+                  <Phone size={16} className="mt-0.5 shrink-0" />
+                  <span>+91 97877 47775</span>
+                </a>
+
+                <a
+                  href="tel:+919994065778"
+                  className="flex items-start gap-3 transition-colors hover:text-white"
+                >
+                  <Phone size={16} className="mt-0.5 shrink-0" />
+                  <span>+91 99940 65778</span>
+                </a>
+
+                <a
+                  href="tel:+919994064778"
+                  className="flex items-start gap-3 transition-colors hover:text-white"
+                >
+                  <Phone size={16} className="mt-0.5 shrink-0" />
+                  <span>+91 99940 64778</span>
+                </a>
+
+                <a
+                  href="mailto:info@stargroups.in"
+                  className="flex items-start gap-3 break-all transition-colors hover:text-white"
+                >
+                  <Mail size={16} className="mt-0.5 shrink-0" />
+                  <span>info@stargroups.in</span>
+                </a>
+
+                <div className="flex items-start gap-3">
+                  <MapPin size={17} className="mt-0.5 shrink-0" />
+                  <span>
+                    123 Business Park, Main Road, City - 600001
+                  </span>
+                </div>
+              </div>
+
+              <button
+                type="button"
+                onClick={openWhatsApp}
+                className="mt-3 inline-flex items-center gap-2 rounded-xl bg-[#19C768] px-4 py-2 text-sm font-semibold text-white transition-colors duration-200 hover:bg-green-600"
+              >
+                <MessageCircle size={16} />
+                WhatsApp Us
+              </button>
+            </div>
+          </div>
+
+          {/* Copyright */}
+          <div className="mt-9 border-t border-white/10 pt-5 sm:mt-12">
+            <p className="text-center text-xs leading-6 text-gray-500 sm:text-sm">
+              © {new Date().getFullYear()} SGP Promoters Pvt Ltd.
+              All rights reserved.
+            </p>
+          </div>
+        </div>
+      </div>
+
+      {/* Floating WhatsApp button */}
+      <button
+        type="button"
+        onClick={openWhatsApp}
+        aria-label="Chat with SGP Promoters on WhatsApp"
+        className="fixed bottom-5 right-5 z-40 flex h-12 w-12 items-center justify-center rounded-full bg-[#19C768] text-white shadow-lg transition-transform duration-200 hover:scale-105 hover:bg-green-600 sm:bottom-7 sm:right-8 sm:h-[60px] sm:w-[60px]"
+      >
+        <MessageCircle size={25} />
+      </button>
+    </footer>
+  );
+}
+
+
