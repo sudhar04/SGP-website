@@ -1,3 +1,4 @@
+
 import { ArrowUpRight } from "lucide-react";
 
 const services = [
@@ -77,42 +78,44 @@ export default function WhatWeOffer() {
       >
         <div
           className="whitespace-nowrap text-center font-black leading-none
-            tracking-[-12px] text-white/[0.035]
-            text-[180px] sm:text-[260px]
-            lg:text-[340px] xl:text-[370px]"
+            tracking-[-8px] text-white/[0.035]
+            text-[150px] sm:text-[230px]
+            lg:text-[320px] xl:text-[370px]"
         >
           SGP
         </div>
       </div>
 
-      {/* Main container */}
+      {/* Main container: aligned with navbar logo and Contact Us button */}
       <div
-        className="relative z-10 mx-auto w-full max-w-[1324px]
-          px-5 pb-16 pt-10
-          sm:px-8 sm:pb-20 sm:pt-12
-          lg:box-border lg:pl-[28px] lg:pr-0
-          lg:pb-[84px] lg:pt-[72px]"
+        className="relative z-10 mx-auto w-full max-w-[1360px]
+          px-5 py-12
+          sm:px-8 sm:py-14
+          lg:px-10 lg:py-[64px]
+          xl:px-12"
       >
         {/* Section heading */}
         <div
-          className="mb-10 flex flex-col items-start justify-between gap-6
-            sm:mb-12
-            lg:mb-[60px] lg:flex-row lg:items-end lg:gap-8"
+          className="mb-8 flex flex-col items-start justify-between gap-5
+            sm:mb-10
+            lg:mb-11 lg:flex-row lg:items-end lg:gap-8"
         >
           <div className="max-w-[760px]">
             <p
-              className="mb-[14px] text-[13px] font-bold uppercase
-                tracking-[1.2px] text-[#ffbd00] sm:text-sm"
+              className="mb-3 text-[13px] font-bold uppercase
+                leading-5 tracking-[1.2px] text-[#ffbd00]
+                sm:text-sm"
             >
               What We Offer
             </p>
 
             <h2
-              className="whitespace-pre-line text-[32px] font-extrabold
-                leading-[1.08] tracking-[-1.1px]
-                sm:text-[42px]
-                lg:text-[52px] lg:leading-[1.02]
-                lg:tracking-[-1.7px]"
+              className="whitespace-pre-line text-[30px] font-extrabold
+                leading-[1.1] tracking-[-1px]
+                sm:text-[38px]
+                lg:text-[48px] lg:leading-[1.04]
+                lg:tracking-[-1.5px]
+                xl:text-[52px]"
             >
               {"Complete Real Estate,\nFinance & DRA Solutions"}
             </h2>
@@ -120,57 +123,64 @@ export default function WhatWeOffer() {
 
           <a
             href="/services"
-            className="group mb-1 inline-flex shrink-0 items-center gap-2
+            className="group inline-flex shrink-0 items-center gap-2
               text-[14px] font-semibold text-[#a9b1be]
-              transition-colors duration-200 hover:text-[#ffbd00]"
+              transition-colors duration-200
+              hover:text-[#ffbd00]
+              lg:mb-1"
           >
             View All Services
+
             <ArrowUpRight
               size={18}
               strokeWidth={1.8}
               className="transition-transform duration-200
                 group-hover:-translate-y-0.5
                 group-hover:translate-x-0.5"
+              aria-hidden="true"
             />
           </a>
         </div>
 
         {/* Service cards */}
         <div
-          className="grid grid-cols-1 gap-5
-            sm:grid-cols-2
-            lg:grid-cols-3 lg:gap-[21px]"
+          className="grid grid-cols-1 items-stretch gap-4
+            sm:grid-cols-2 sm:gap-5
+            lg:grid-cols-3 lg:gap-5
+            xl:gap-[22px]"
         >
           {services.map((service) => (
             <article
               key={service.number}
-              className={`group relative flex min-h-[310px] flex-col
-                overflow-hidden rounded-[24px]
+              className={`group relative flex min-w-0 flex-col
+                overflow-hidden rounded-[22px]
                 border border-white/[0.09]
-                bg-[#242a33]/90 p-6
+                bg-[#242a33]/90 p-5
                 transition-all duration-300
                 hover:-translate-y-1
                 hover:border-white/20
                 ${service.hoverClass}
-                sm:min-h-[320px] sm:p-[25px]
-                lg:h-[370px] lg:min-h-0
-                lg:rounded-[26px] lg:p-[27px]`}
+                sm:p-6
+                lg:rounded-[24px] lg:p-6
+                xl:p-[27px]`}
             >
               {/* Card number */}
               <span
                 aria-hidden="true"
-                className="absolute right-[25px] top-[25px]
-                  font-mono text-[36px] font-bold leading-none
+                className="absolute right-5 top-5
+                  font-mono text-[30px] font-bold leading-none
                   tracking-[-2px] text-[#39414c]
                   transition-colors duration-300
-                  group-hover:text-white/35"
+                  group-hover:text-white/35
+                  sm:right-6 sm:top-6 sm:text-[34px]
+                  lg:right-6 lg:top-6"
               >
                 {service.number}
               </span>
 
               {/* Service icon */}
               <div
-                className="mb-[26px] flex h-[34px] w-[42px]
+                className="mb-5 flex h-10 w-11 shrink-0
                   items-center justify-start
                   transition-transform duration-300
                   group-hover:scale-110"
@@ -178,7 +188,8 @@ export default function WhatWeOffer() {
                 <span
                   role="img"
                   aria-label={service.title.replace("\n", " ")}
-                  className="text-[39px] leading-none"
+                  className="text-[35px] leading-none
+                    sm:text-[37px]"
                 >
                   {service.icon}
                 </span>
@@ -186,44 +197,48 @@ export default function WhatWeOffer() {
 
               {/* Service title */}
               <h3
-                className="min-h-[64px] whitespace-pre-line
-                  text-[23px] font-bold leading-[1.45]
-                  tracking-[-0.35px] text-white
-                  sm:text-[24px] sm:leading-[1.4]"
+                className="mb-3 whitespace-pre-line
+                  pr-12 text-[21px] font-bold
+                  leading-[1.4] tracking-[-0.35px] text-white
+                  sm:text-[22px]
+                  lg:text-[22px]"
               >
                 {service.title}
               </h3>
 
-              {/* Description and link */}
-              <div className="mt-auto pt-5">
-                <p
-                  className="mb-[20px] max-w-[370px]
-                    text-[15px] font-normal leading-[1.65]
-                    text-[#9ba7b8]
-                    transition-colors duration-300
-                    group-hover:text-white/90"
-                >
-                  {service.description}
-                </p>
+              {/* Description */}
+              <p
+                className="mb-4 max-w-[370px]
+                  text-[14px] font-normal leading-[1.65]
+                  text-[#9ba7b8]
+                  transition-colors duration-300
+                  group-hover:text-white/90
+                  sm:text-[15px]"
+              >
+                {service.description}
+              </p>
 
-                <a
-                  href={service.href}
-                  className="group/link inline-flex items-center gap-[7px]
-                    text-[14px] font-medium text-[#9ba7b8]
-                    transition-colors duration-200
-                    hover:text-white
-                    group-hover:text-white"
-                >
-                  Learn More
-                  <ArrowUpRight
-                    size={16}
-                    strokeWidth={1.8}
-                    className="transition-transform duration-200
-                      group-hover/link:-translate-y-0.5
-                      group-hover/link:translate-x-0.5"
-                  />
-                </a>
-              </div>
+              {/* Learn More */}
+              <a
+                href={service.href}
+                className="group/link mt-1 inline-flex w-fit
+                  items-center gap-[7px]
+                  text-[14px] font-medium text-[#9ba7b8]
+                  transition-colors duration-200
+                  hover:text-white
+                  group-hover:text-white"
+              >
+                Learn More
+
+                <ArrowUpRight
+                  size={16}
+                  strokeWidth={1.8}
+                  className="transition-transform duration-200
+                    group-hover/link:-translate-y-0.5
+                    group-hover/link:translate-x-0.5"
+                  aria-hidden="true"
+                />
+              </a>
             </article>
           ))}
         </div>
@@ -231,6 +246,7 @@ export default function WhatWeOffer() {
     </section>
   );
 }
+
 
 
 

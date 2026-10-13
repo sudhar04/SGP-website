@@ -1,3 +1,4 @@
+
 import { ArrowRight, Handshake, TrendingUp } from "lucide-react";
 
 export default function PartnerWithSGP() {
@@ -6,13 +7,13 @@ export default function PartnerWithSGP() {
       id="partners"
       className="w-full overflow-x-clip bg-[#f8fafc] text-[#111827]"
     >
-      {/* Container aligned with the navbar logo's vertical line */}
+      {/* Container aligned with navbar logo and Contact Us button */}
       <div
-        className="mx-auto w-full max-w-[1324px]
+        className="mx-auto w-full max-w-[1360px] box-border
           px-5 py-10
           sm:px-8 sm:py-12
-          lg:px-7 lg:py-[44px]
-          xl:px-0"
+          lg:px-10 lg:py-[44px]
+          xl:px-12"
       >
         {/* Heading */}
         <header
@@ -46,33 +47,24 @@ export default function PartnerWithSGP() {
         </header>
 
         {/* Partner cards */}
-        <div
-          className="grid grid-cols-1 gap-5
-            sm:gap-5 lg:grid-cols-2 lg:gap-6"
-        >
+        <div className="grid grid-cols-1 gap-5 sm:gap-5 lg:grid-cols-2 lg:gap-6">
           {/* Investment partners */}
           <article
             className="flex min-w-0 flex-col items-start
               rounded-[18px] border border-[#d8e7ff]
               bg-[#eff6ff] p-5
               transition-shadow duration-200 hover:shadow-md
-              sm:p-6 lg:min-h-[330px] lg:p-7"
+              sm:p-6 lg:p-7"
           >
-            {/* Icon */}
             <div
               className="mb-4 flex h-[48px] w-[48px] shrink-0
                 items-center justify-center rounded-[13px]
                 bg-gradient-to-br from-[#2865f5] to-[#2144b8]
                 text-white shadow-sm"
             >
-              <TrendingUp
-                size={25}
-                strokeWidth={2.2}
-                aria-hidden="true"
-              />
+              <TrendingUp size={25} strokeWidth={2.2} aria-hidden="true" />
             </div>
 
-            {/* Eyebrow */}
             <p
               className="mb-2.5 text-[12px] font-bold uppercase
                 leading-[18px] tracking-[1.3px]
@@ -81,20 +73,16 @@ export default function PartnerWithSGP() {
               Investment Partners
             </p>
 
-            {/* Title */}
             <h3
-              className="mb-3 text-[18px] font-bold
-                leading-[1.35] tracking-[-0.2px]
-                text-[#111827] sm:text-[20px]"
+              className="mb-3 text-[18px] font-bold leading-[1.35]
+                tracking-[-0.2px] text-[#111827] sm:text-[20px]"
             >
               Grow Your Wealth With Us
             </h3>
 
-            {/* Description */}
             <p
-              className="mb-5 text-[14px] font-normal
-                leading-[1.7] text-[#718096]
-                sm:text-[15px] sm:leading-[1.65]"
+              className="mb-5 text-[14px] font-normal leading-[1.7]
+                text-[#718096] sm:text-[15px] sm:leading-[1.65]"
             >
               Are you looking for high-return investment opportunities in real
               estate? Partner with SGP Promoters and gain exclusive access to
@@ -102,20 +90,17 @@ export default function PartnerWithSGP() {
               opportunities — backed by 15+ years of expertise.
             </p>
 
-            {/* CTA */}
             <a
               href="/contact"
-              className="mt-auto inline-flex max-w-full items-center
-                justify-center gap-2.5 rounded-[11px]
+              className="inline-flex max-w-full items-center justify-center
+                gap-2.5 rounded-[11px]
                 bg-gradient-to-r from-[#2865f5] to-[#2144b8]
-                px-4 py-[9px] text-center text-[13px]
-                font-semibold leading-5 text-white shadow-sm
-                transition-all duration-200
-                hover:-translate-y-0.5 hover:shadow-md
-                focus-visible:outline-none focus-visible:ring-2
-                focus-visible:ring-blue-500
-                focus-visible:ring-offset-2
-                sm:text-[14px]"
+                px-4 py-[9px] text-center text-[13px] font-semibold
+                leading-5 text-white shadow-sm
+                transition-all duration-200 hover:-translate-y-0.5
+                hover:shadow-md focus-visible:outline-none
+                focus-visible:ring-2 focus-visible:ring-blue-500
+                focus-visible:ring-offset-2 sm:text-[14px]"
             >
               <span>Explore Investment Opportunities</span>
               <ArrowRight
@@ -133,23 +118,17 @@ export default function PartnerWithSGP() {
               rounded-[18px] border border-[#ffebad]
               bg-[#fffbeb] p-5
               transition-shadow duration-200 hover:shadow-md
-              sm:p-6 lg:min-h-[330px] lg:p-7"
+              sm:p-6 lg:p-7"
           >
-            {/* Icon */}
             <div
               className="mb-4 flex h-[48px] w-[48px] shrink-0
                 items-center justify-center rounded-[13px]
                 bg-gradient-to-br from-[#ff9d00] to-[#f05a00]
                 text-white shadow-sm"
             >
-              <Handshake
-                size={25}
-                strokeWidth={2.2}
-                aria-hidden="true"
-              />
+              <Handshake size={25} strokeWidth={2.2} aria-hidden="true" />
             </div>
 
-            {/* Eyebrow */}
             <p
               className="mb-2.5 text-[12px] font-bold uppercase
                 leading-[18px] tracking-[1.3px]
@@ -158,20 +137,16 @@ export default function PartnerWithSGP() {
               Channel Partners
             </p>
 
-            {/* Title */}
             <h3
-              className="mb-3 text-[18px] font-bold
-                leading-[1.35] tracking-[-0.2px]
-                text-[#111827] sm:text-[20px]"
+              className="mb-3 text-[18px] font-bold leading-[1.35]
+                tracking-[-0.2px] text-[#111827] sm:text-[20px]"
             >
               Join Our Partner Network
             </h3>
 
-            {/* Description */}
             <p
-              className="mb-5 text-[14px] font-normal
-                leading-[1.7] text-[#718096]
-                sm:text-[15px] sm:leading-[1.65]"
+              className="mb-5 text-[14px] font-normal leading-[1.7]
+                text-[#718096] sm:text-[15px] sm:leading-[1.65]"
             >
               Are you a real estate professional, broker, or consultant? Become
               an SGP Promoters Channel Partner and earn attractive referral
@@ -179,20 +154,17 @@ export default function PartnerWithSGP() {
               auction properties and financial services in the region.
             </p>
 
-            {/* CTA */}
             <a
               href="/contact"
-              className="mt-auto inline-flex max-w-full items-center
-                justify-center gap-2.5 rounded-[11px]
+              className="inline-flex max-w-full items-center justify-center
+                gap-2.5 rounded-[11px]
                 bg-gradient-to-r from-[#ff9d00] to-[#f05a00]
-                px-4 py-[9px] text-center text-[13px]
-                font-semibold leading-5 text-white shadow-sm
-                transition-all duration-200
-                hover:-translate-y-0.5 hover:shadow-md
-                focus-visible:outline-none focus-visible:ring-2
-                focus-visible:ring-orange-500
-                focus-visible:ring-offset-2
-                sm:text-[14px]"
+                px-4 py-[9px] text-center text-[13px] font-semibold
+                leading-5 text-white shadow-sm
+                transition-all duration-200 hover:-translate-y-0.5
+                hover:shadow-md focus-visible:outline-none
+                focus-visible:ring-2 focus-visible:ring-orange-500
+                focus-visible:ring-offset-2 sm:text-[14px]"
             >
               <span>Become a Channel Partner</span>
               <ArrowRight
@@ -208,4 +180,5 @@ export default function PartnerWithSGP() {
     </section>
   );
 }
+
 
