@@ -36,12 +36,23 @@ export default function Footer() {
 
   return (
     <footer className="relative w-full bg-[#171C25] text-gray-300">
-      {/* Main footer */}
-      <div className="w-full px-5 pb-5 pt-10 sm:px-8 sm:pb-6 sm:pt-12">
-        {/* Keep the same centered container for all footer content */}
-        <div className="mx-auto w-full max-w-[1330px]">
+      {/* Footer content — shared horizontal container */}
+      <div className="w-full py-10 sm:py-12">
+        <div
+          className="
+            mx-auto w-full max-w-[1360px]
+            px-5 sm:px-8 lg:px-[50px]
+          "
+        >
           {/* Footer columns */}
-          <div className="grid grid-cols-1 gap-8 sm:grid-cols-2 sm:gap-x-10 sm:gap-y-10 lg:grid-cols-[1.15fr_1fr_1.05fr_1fr] lg:gap-12">
+          <div
+            className="
+              grid grid-cols-1 gap-y-8
+              sm:grid-cols-2 sm:gap-x-10
+              lg:grid-cols-[1.15fr_1fr_1.05fr_1fr]
+              lg:gap-x-12
+            "
+          >
             {/* Brand */}
             <div className="min-w-0">
               <a
@@ -49,8 +60,8 @@ export default function Footer() {
                 aria-label="SGP Promoters Home"
                 className="inline-flex items-center gap-3"
               >
-                {/* Logo aligned with the navbar logo */}
-                <div className="flex h-12 w-12 shrink-0 items-center justify-center overflow-hidden rounded-xl border border-gray-100 bg-white">
+                {/* Footer logo */}
+                <div className="flex h-12 w-12 shrink-0 items-center justify-center rounded-xl border border-gray-100 bg-white">
                   <span className="text-base font-bold text-[#C7A65A]">
                     SGP
                   </span>
@@ -67,7 +78,7 @@ export default function Footer() {
               </p>
             </div>
 
-            {/* Quick links */}
+            {/* Quick Links */}
             <div className="min-w-0">
               <h3 className="mb-4 text-base font-bold text-white">
                 Quick Links
@@ -187,5 +198,6 @@ export default function Footer() {
     </footer>
   );
 }
+
 
 
