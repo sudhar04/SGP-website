@@ -5,6 +5,7 @@ import DRASection from "./components/DRASection";
 import WhatWeOffer from "./components/WhatWeOffer";
 import LoanServices from "./components/LoanServices";
 import InsuranceInvestments from "./components/InsuranceInvestments";
+import Properties from "./components/Properties";
 import AboutSGP from "./components/AboutSGP";
 import WhyChooseUs from "./components/WhyChooseUs";
 import Testimonials from "./components/Testimonials";
@@ -22,6 +23,7 @@ export default function App() {
       <WhatWeOffer />
       <LoanServices />
       <InsuranceInvestments />
+      <Properties />
       <AboutSGP />
       <WhyChooseUs />
       <Testimonials />

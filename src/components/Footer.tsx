@@ -186,6 +186,37 @@ export default function Footer() {
         </div>
       </div>
 
+            
+      {/* Floating Enquire Now button */}
+      <button
+        type="button"
+        onClick={() => {
+          document.getElementById("contact")?.scrollIntoView({
+            behavior: "smooth",
+            block: "start",
+          });
+        }}
+        aria-label="Enquire now"
+        className="
+          fixed bottom-5 right-[76px] z-40
+          inline-flex h-12 items-center justify-center
+          rounded-full bg-[#FFBE00] px-5
+          text-sm font-semibold text-gray-950
+          shadow-lg
+          transition-all duration-300 ease-in-out
+          hover:-translate-y-1 hover:bg-[#F5B400]
+          hover:shadow-xl
+          focus-visible:outline-none
+          focus-visible:ring-2 focus-visible:ring-yellow-500
+          focus-visible:ring-offset-2
+          sm:bottom-7 sm:right-[108px]
+          sm:h-[60px] sm:px-7 sm:text-base
+        "
+      >
+        Enquire Now
+      </button>
+
+
       {/* Floating WhatsApp button */}
       <button
         type="button"
