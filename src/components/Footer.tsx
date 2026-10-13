@@ -4,14 +4,16 @@ import {
   MapPin,
   MessageCircle,
 } from "lucide-react";
+import { useNavigate } from "react-router-dom";
 
 const WHATSAPP_NUMBER = "919787747775";
 
 const quickLinks = [
-  { label: "Properties", href: "#properties" },
-  { label: "Services", href: "#services" },
-  { label: "About Us", href: "#about" },
-  { label: "Contact", href: "#contact" },
+  { label: "Home", href: "/" },
+  { label: "Properties", href: "/properties" },
+  { label: "Services", href: "/services" },
+  { label: "About Us", href: "/about" },
+  { label: "Contact", href: "/contact" },
 ];
 
 const services = [
@@ -23,6 +25,7 @@ const services = [
 ];
 
 export default function Footer() {
+  const navigate = useNavigate();
   const openWhatsApp = () => {
     const message =
       "Hello SGP Promoters, I would like to know more about your services.";
@@ -56,7 +59,11 @@ export default function Footer() {
             {/* Brand */}
             <div className="min-w-0">
               <a
-                href="#home"
+                 href="/"
+                onClick={(e) => {
+                  e.preventDefault();
+                  navigate("/");
+                }}
                 aria-label="SGP Promoters Home"
                 className="inline-flex items-center gap-3"
               >
@@ -89,6 +96,11 @@ export default function Footer() {
                   <li key={link.label}>
                     <a
                       href={link.href}
+                      onClick={(e) => {
+                        e.preventDefault();
+                        navigate(link.href);
+                        window.scrollTo({ top: 0, behavior: "smooth" });
+                      }}
                       className="text-[15px] leading-6 text-gray-400 transition-colors duration-200 hover:text-[#FFBE00]"
                     >
                       {link.label}
@@ -108,7 +120,12 @@ export default function Footer() {
                 {services.map((service) => (
                   <li key={service}>
                     <a
-                      href="#services"
+                      href="/services"
+                      onClick={(e) => {
+                        e.preventDefault();
+                        navigate("/services");
+                        window.scrollTo({ top: 0, behavior: "smooth" });
+                      }}
                       className="text-[15px] leading-6 text-gray-400 transition-colors duration-200 hover:text-[#FFBE00]"
                     >
                       {service}
@@ -126,6 +143,7 @@ export default function Footer() {
 
               <div className="space-y-2.5 text-[15px] leading-[1.5] text-gray-400">
                 <a
+                  onClick={() => navigate("/contact")}
                   href="tel:+919787747775"
                   className="flex items-start gap-3 transition-colors hover:text-white"
                 >
