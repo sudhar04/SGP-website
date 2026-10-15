@@ -1,11 +1,11 @@
-import Properties from "../components/Properties";
 import PropertiesPageHeader from "../components/PropertiesPageHeader";
+import PropertiesList from "../components/PropertiesList";
 
 export default function PropertiesPage() {
   return (
     <>
       <PropertiesPageHeader />
-      <Properties />
+      <PropertiesList />
     </>
   );
 }
