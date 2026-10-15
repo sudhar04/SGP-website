@@ -3,9 +3,9 @@ import {
   Award,
   ShieldCheck,
   Landmark,
-  Clock3,
+  Clock,
   BadgeCheck,
-  UsersRound,
+  Users,
 } from "lucide-react";
 
 const features = [
@@ -28,7 +28,7 @@ const features = [
       "Strong tie-ups with leading banks for the best loan rates and NPA deals.",
   },
   {
-    icon: Clock3,
+    icon: Clock,
     title: "Fast Processing",
     description:
       "Loans sanctioned in as fast as 7 days with minimal documentation.",
@@ -40,7 +40,7 @@ const features = [
       "Compliant NPA recovery under RBI & SARFAESI guidelines for all banks.",
   },
   {
-    icon: UsersRound,
+    icon: Users,
     title: "Dedicated Support",
     description:
       "A personal expert guiding you through every step, start to finish.",
@@ -73,20 +73,20 @@ export default function WhyChooseServices() {
   return (
     <section
       ref={sectionRef}
-      className="w-full bg-white px-5 py-12 sm:px-8 sm:py-16 lg:px-10 lg:py-20"
+      className="w-full scroll-mt-[90px] bg-white py-8 sm:py-10 lg:py-12"
     >
-      {/* Aligned with navbar logo and Contact Us button */}
-      <div className="mx-auto w-full max-w-[1360px] xl:px-0">
-        {/* Blue feature container */}
+      {/* Same horizontal alignment as the navbar */}
+      <div className="mx-auto w-full max-w-[1360px] px-5 sm:px-8 lg:px-10 xl:px-12">
+        {/* Main blue container */}
         <div
-          className={`rounded-[24px] bg-gradient-to-r from-[#1264F5] via-[#1767F2] to-[#3475D0] px-5 py-8 text-white transition-all duration-700 ease-out sm:px-8 sm:py-10 lg:px-[42px] lg:py-[44px] ${
+          className={`rounded-[24px] bg-gradient-to-r from-[#1261F5] via-[#1768F5] to-[#3477D0] px-5 py-8 shadow-sm transition-all duration-700 ease-out sm:px-8 sm:py-10 lg:px-11 lg:py-11 ${
             isVisible
               ? "translate-y-0 opacity-100"
               : "translate-y-6 opacity-0"
           }`}
         >
           {/* Heading */}
-          <h2 className="mb-8 text-center text-xl font-bold tracking-tight sm:mb-9 sm:text-2xl lg:mb-9">
+          <h2 className="mb-8 text-center text-xl font-bold tracking-tight text-white sm:mb-9 sm:text-2xl lg:text-[26px]">
             Why Choose Our Services?
           </h2>
 
@@ -103,28 +103,29 @@ export default function WhyChooseServices() {
                       ? `${index * 80}ms`
                       : "0ms",
                   }}
-                  className={`flex min-w-0 items-start gap-4 rounded-[17px] border border-white/10 bg-white/[0.09] p-4 transition-all duration-500 ease-out hover:border-white/25 hover:bg-white/[0.15] sm:p-5 ${
+                  className={`group flex min-w-0 items-start gap-4 rounded-[17px] border border-white/10 bg-white/[0.09] p-4 transition-all duration-300 ease-out hover:-translate-y-1 hover:border-white/25 hover:bg-white/[0.15] hover:shadow-lg sm:p-5 ${
                     isVisible
                       ? "translate-y-0 opacity-100"
                       : "translate-y-5 opacity-0"
                   }`}
                 >
-                  {/* Icon box */}
-                  <div className="flex h-[52px] w-[52px] shrink-0 items-center justify-center rounded-[13px] bg-white/20">
+                  {/* Icon */}
+                  <div className="flex h-[52px] w-[52px] shrink-0 items-center justify-center rounded-[14px] bg-white/20 transition-colors duration-300 group-hover:bg-white/25">
                     <Icon
                       size={25}
                       strokeWidth={2}
-                      className="text-[#FFCB05]"
+                      className="text-[#FFCA05]"
+                      aria-hidden="true"
                     />
                   </div>
 
                   {/* Text */}
-                  <div className="min-w-0 flex-1 pt-0.5">
-                    <h3 className="text-sm font-bold leading-snug sm:text-[15px]">
+                  <div className="min-w-0 flex-1">
+                    <h3 className="text-sm font-bold leading-snug text-white sm:text-[15px]">
                       {feature.title}
                     </h3>
 
-                    <p className="mt-1.5 text-[13px] leading-[1.65] text-blue-50/90 sm:text-sm">
+                    <p className="mt-1.5 text-[13px] leading-[1.65] text-blue-50 sm:text-sm">
                       {feature.description}
                     </p>
                   </div>
@@ -137,3 +138,6 @@ export default function WhyChooseServices() {
     </section>
   );
 }
+
+
+
