@@ -7,10 +7,12 @@ import Services from "./pages/Services";
 import About from "./pages/About";
 import Contact from "./pages/Contact";
 import NotFound from "./pages/NotFound";
+import ScrollToTop from "./components/ScrollToTop";
 
 export default function App() {
   return (
     <>
+      <ScrollToTop />
       <Navbar />
 
       <main>

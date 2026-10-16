@@ -139,7 +139,7 @@ export default function Navbar() {
         {/* Desktop Contact Button */}
         <button
           type="button"
-          onClick={handleContactClick}
+          onClick={() => navigate("/contact")}
           className="hidden shrink-0 items-center justify-center rounded-full bg-[#FFBE00] px-7 py-3 text-[15px] font-semibold text-gray-950 transition-all duration-300 hover:-translate-y-0.5 hover:bg-[#F5B400] hover:shadow-lg active:scale-95 lg:inline-flex"
         >
           Contact Us

@@ -1,4 +1,4 @@
-
+import { Link } from "react-router-dom";
 import { ArrowUpRight } from "lucide-react";
 
 const services = [
@@ -150,8 +150,9 @@ export default function WhatWeOffer() {
             xl:gap-[22px]"
         >
           {services.map((service) => (
-            <article
+            <Link
               key={service.number}
+              to="/services"
               className={`group relative flex min-w-0 flex-col
                 overflow-hidden rounded-[22px]
                 border border-white/[0.09]
@@ -239,7 +240,7 @@ export default function WhatWeOffer() {
                   aria-hidden="true"
                 />
               </a>
-            </article>
+            </Link>
           ))}
         </div>
       </div>
