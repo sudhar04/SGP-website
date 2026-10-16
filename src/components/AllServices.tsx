@@ -9,6 +9,7 @@ import {
   CircleCheck,
   ArrowRight,
 } from "lucide-react";
+import EnquiryModal from "./EnquiryModal";
 
 const services = [
   {
@@ -124,6 +125,7 @@ const services = [
 export default function AllServices() {
   const sectionRef = useRef<HTMLElement>(null);
   const [visibleItems, setVisibleItems] = useState<number[]>([]);
+  const [isEnquiryOpen, setIsEnquiryOpen] = useState(false);
 
   useEffect(() => {
     const section = sectionRef.current;
@@ -212,16 +214,17 @@ export default function AllServices() {
                     {service.description}
                   </p>
 
-                  <a
-                    href="/contact"
-                    className="group mt-6 inline-flex items-center gap-4 rounded-xl bg-[#ffbe00] px-5 py-3 text-sm font-semibold text-slate-950 shadow-sm transition-all duration-300 hover:-translate-y-1 hover:bg-[#f5b400] hover:shadow-lg focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-amber-500 focus-visible:ring-offset-2 active:scale-[0.98]"
+                  <button
+                    type="button"
+                    onClick={() => setIsEnquiryOpen(true)}
+                    className="group mt-6 inline-flex items-center gap-4 rounded-xl bg-[#ffbe00] px-5 py-3 text-sm font-semibold text-slate-950 shadow-sm transition-all duration-300 hover:-translate-y-1 hover:bg-[#f5b400] hover:shadow-lg focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#1e40af] focus-visible:ring-offset-2 active:scale-[0.98]"
                   >
                     Talk to Our Expert
                     <ArrowRight
                       size={18}
                       className="transition-transform duration-300 group-hover:translate-x-1"
                     />
-                  </a>
+                  </button>
                 </div>
 
                 {/* Service feature cards */}
@@ -264,6 +267,11 @@ export default function AllServices() {
           })}
         </div>
       </div>
+
+      <EnquiryModal
+        isOpen={isEnquiryOpen}
+        onClose={() => setIsEnquiryOpen(false)}
+      />
     </section>
   );
 }

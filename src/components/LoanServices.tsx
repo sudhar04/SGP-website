@@ -13,7 +13,8 @@ import {
   Zap,
   Building2,
 } from "lucide-react";
-
+import { useState } from "react";
+import EnquiryModal from "./EnquiryModal";
 import { motion, useReducedMotion } from "framer-motion";
 
 const loans = [
@@ -134,6 +135,7 @@ const reveal = {
 
 export default function LoanServices() {
   const shouldReduceMotion = useReducedMotion();
+  const [isEnquiryOpen, setIsEnquiryOpen] = useState(false);
 
   const animationProps = shouldReduceMotion
     ? {}
@@ -297,18 +299,24 @@ export default function LoanServices() {
           {...animationProps}
           className="mt-9 flex justify-center sm:mt-11"
         >
-          <a
-            href="#contact"
-            className="group inline-flex min-h-[52px] w-full max-w-[240px] items-center justify-center gap-3 rounded-xl bg-[#ffbf00] px-7 py-4 text-center text-sm font-semibold text-gray-950 shadow-sm transition-all duration-300 hover:-translate-y-1 hover:bg-[#f5b400] hover:shadow-lg focus:outline-none focus-visible:ring-4 focus-visible:ring-blue-300 sm:w-auto"
+          <button
+            type="button"
+            onClick={() => setIsEnquiryOpen(true)}
+            className="group inline-flex min-h-[52px] w-full max-w-[240px] items-center justify-center gap-3 rounded-xl bg-[#ffbf00] px-7 py-4 text-center text-sm font-semibold text-gray-950 shadow-sm transition-all duration-300 hover:-translate-y-1 hover:bg-[#f5b400] hover:shadow-lg focus:outline-none focus-visible:ring-4 focus-visible:ring-[#1e40af] sm:w-auto"
           >
             Apply for a Loan
             <ArrowRight
               size={19}
               className="transition-transform duration-300 group-hover:translate-x-1"
             />
-          </a>
+          </button>
         </motion.div>
       </div>
+
+      <EnquiryModal
+        isOpen={isEnquiryOpen}
+        onClose={() => setIsEnquiryOpen(false)}
+      />
     </section>
   );
 }

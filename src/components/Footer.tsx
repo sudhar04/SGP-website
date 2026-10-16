@@ -5,6 +5,8 @@ import {
   MessageCircle,
 } from "lucide-react";
 import { useNavigate } from "react-router-dom";
+import { useState } from "react";
+import EnquiryModal from "./EnquiryModal";
 
 const WHATSAPP_NUMBER = "919787747775";
 
@@ -26,6 +28,8 @@ const services = [
 
 export default function Footer() {
   const navigate = useNavigate();
+  const [isEnquiryOpen, setIsEnquiryOpen] = useState(false);
+
   const openWhatsApp = () => {
     const message =
       "Hello SGP Promoters, I would like to know more about your services.";
@@ -205,15 +209,11 @@ export default function Footer() {
       </div>
 
             
+      
       {/* Floating Enquire Now button */}
       <button
         type="button"
-        onClick={() => {
-          document.getElementById("contact")?.scrollIntoView({
-            behavior: "smooth",
-            block: "start",
-          });
-        }}
+        onClick={() => setIsEnquiryOpen(true)}
         aria-label="Enquire now"
         className="
           fixed bottom-5 right-[76px] z-40
@@ -225,7 +225,7 @@ export default function Footer() {
           hover:-translate-y-1 hover:bg-[#F5B400]
           hover:shadow-xl
           focus-visible:outline-none
-          focus-visible:ring-2 focus-visible:ring-yellow-500
+          focus-visible:ring-2 focus-visible:ring-[#1e40af]
           focus-visible:ring-offset-2
           sm:bottom-7 sm:right-[108px]
           sm:h-[60px] sm:px-7 sm:text-base
@@ -244,6 +244,12 @@ export default function Footer() {
       >
         <MessageCircle size={25} />
       </button>
+
+      <EnquiryModal
+        isOpen={isEnquiryOpen}
+        onClose={() => setIsEnquiryOpen(false)}
+      />
+      
     </footer>
   );
 }

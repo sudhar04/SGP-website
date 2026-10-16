@@ -10,6 +10,8 @@ import {
   ShieldCheck,
   MessageCircle,
 } from "lucide-react";
+import { useState } from "react";
+import EnquiryModal from "./EnquiryModal";
 
 const trustBadges = [
   { icon: Star, label: "15+ Years" },
@@ -57,6 +59,8 @@ export default function Hero() {
       "noopener,noreferrer"
     );
   };
+  
+  const [isEnquiryOpen, setIsEnquiryOpen] = useState(false);
 
   return (
     <section
@@ -140,12 +144,13 @@ export default function Hero() {
                 <ArrowRight size={18} />
               </a>
 
-              <a
-                href="#contact"
+              <button
+                type="button"
+                onClick={() => setIsEnquiryOpen(true)}
                 className="inline-flex min-h-[44px] items-center justify-center rounded-xl border border-white/40 bg-black/10 px-5 py-3 text-sm font-semibold text-white transition duration-300 hover:border-[#FFBE00] hover:bg-white/10 sm:px-6 sm:text-base"
               >
                 Enquire Now
-              </a>
+              </button>
             </motion.div>
 
             {/* Phone link */}
@@ -232,6 +237,11 @@ export default function Hero() {
       >
         <MessageCircle size={24} />
       </button>
+
+      <EnquiryModal
+        isOpen={isEnquiryOpen}
+        onClose={() => setIsEnquiryOpen(false)}
+      />
     </section>
   );
 }

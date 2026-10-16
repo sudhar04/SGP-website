@@ -1,6 +1,6 @@
-import { useEffect, useState, type FormEvent } from "react";
+import { useEffect, useRef, useState, type FormEvent } from "react";
 import { createPortal } from "react-dom";
-import { X, Phone, Send } from "lucide-react";
+import { Check, ChevronDown, Phone, Send, X } from "lucide-react";
 
 interface EnquiryModalProps {
   isOpen: boolean;
@@ -23,9 +23,8 @@ const requirements = [
   "Other",
 ];
 
-
-const inputClass =
-  "h-[52px] w-full rounded-[12px] border border-[#dfe5ed] bg-[#f7f8fa] px-[13px] text-[14px] text-[#1f2937] outline-none transition-all duration-200 placeholder:text-[#718096] focus:border-[#1677ff] focus:bg-white focus:ring-1 focus:ring-[#1677ff]";
+const fieldClass =
+  "h-[52px] w-full rounded-xl border border-[#dfe5ed] bg-[#f7f8fa] px-3.5 text-sm text-slate-800 outline-none transition-colors duration-200 placeholder:text-slate-500 hover:border-[#1e40af] focus:border-[#1677ff] focus:bg-white focus:ring-1 focus:ring-[#1677ff]";
 
 export default function EnquiryModal({
   isOpen,
@@ -39,6 +38,12 @@ export default function EnquiryModal({
     message: "",
   });
 
+  const [dropdownOpen, setDropdownOpen] = useState(false);
+  const [highlightedIndex, setHighlightedIndex] = useState(-1);
+
+  const dropdownRef = useRef<HTMLDivElement>(null);
+  const optionRefs = useRef<(HTMLButtonElement | null)[]>([]);
+
   useEffect(() => {
     if (!isOpen) return;
 
@@ -46,21 +51,79 @@ export default function EnquiryModal({
     document.body.style.overflow = "hidden";
 
     const handleEscape = (event: KeyboardEvent) => {
-      if (event.key === "Escape") onClose();
+      if (event.key === "Escape") {
+        if (dropdownOpen) {
+          setDropdownOpen(false);
+        } else {
+          onClose();
+        }
+      }
+
+      if (dropdownOpen && requirements.length > 0) {
+        if (event.key === "ArrowDown") {
+          event.preventDefault();
+          setHighlightedIndex((index) =>
+            index < 0 ? 0 : (index + 1) % requirements.length
+          );
+        }
+
+        if (event.key === "ArrowUp") {
+          event.preventDefault();
+          setHighlightedIndex((index) =>
+            index <= 0 ? requirements.length - 1 : index - 1
+          );
+        }
+
+        if (event.key === "Enter" && highlightedIndex >= 0) {
+          event.preventDefault();
+          selectRequirement(requirements[highlightedIndex]);
+        }
+      }
+    };
+
+    const handleOutsideClick = (event: MouseEvent) => {
+      if (
+        dropdownRef.current &&
+        !dropdownRef.current.contains(event.target as Node)
+      ) {
+        setDropdownOpen(false);
+      }
     };
 
     window.addEventListener("keydown", handleEscape);
+    document.addEventListener("mousedown", handleOutsideClick);
 
     return () => {
       document.body.style.overflow = previousOverflow;
       window.removeEventListener("keydown", handleEscape);
+      document.removeEventListener("mousedown", handleOutsideClick);
     };
-  }, [isOpen, onClose]);
+  }, [isOpen, onClose, dropdownOpen, highlightedIndex]);
+
+  useEffect(() => {
+    if (highlightedIndex >= 0) {
+      optionRefs.current[highlightedIndex]?.scrollIntoView({
+        block: "nearest",
+      });
+    }
+  }, [highlightedIndex]);
 
   if (!isOpen) return null;
 
+  const selectRequirement = (requirement: string) => {
+    setForm((previous) => ({ ...previous, requirement }));
+    setDropdownOpen(false);
+    setHighlightedIndex(-1);
+  };
+
   const handleSubmit = (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault();
+
+    if (!form.requirement) {
+      setDropdownOpen(true);
+      setHighlightedIndex(0);
+      return;
+    }
 
     const message = [
       "SGP Promoters - Enquiry",
@@ -68,7 +131,7 @@ export default function EnquiryModal({
       `Phone: ${form.phone}`,
       `Email: ${form.email || "Not provided"}`,
       `Requirement: ${form.requirement}`,
-      `Message: ${form.message || "Not provided"}`,
+      `Message: ${form.message.trim() || "Not provided"}`,
     ].join("\n");
 
     window.open(
@@ -80,16 +143,16 @@ export default function EnquiryModal({
 
   return createPortal(
     <div
-      className="fixed inset-0 z-[99999] flex items-center justify-center overflow-y-auto bg-black/50 px-4 py-4 backdrop-blur-[5px] sm:px-6"
+      className="fixed inset-0 z-[99999] flex items-center justify-center overflow-y-auto bg-slate-950/60 px-3 py-4 backdrop-blur-[4px] sm:px-5"
       onMouseDown={(event) => {
         if (event.target === event.currentTarget) onClose();
       }}
     >
-      <div
+      <section
         role="dialog"
         aria-modal="true"
         aria-labelledby="enquiry-modal-title"
-        className="relative my-auto w-full max-w-[440px] shrink-0 rounded-[16px] bg-white px-6 py-6 text-gray-900 shadow-2xl max-[400px]:px-4 max-[400px]:py-5"
+        className="relative my-auto w-full max-w-[480px] rounded-[18px] border border-slate-200 bg-white px-6 py-6 text-slate-900 shadow-2xl sm:px-8 sm:py-7"
         onMouseDown={(event) => event.stopPropagation()}
       >
         {/* Close button */}
@@ -97,35 +160,35 @@ export default function EnquiryModal({
           type="button"
           onClick={onClose}
           aria-label="Close enquiry form"
-          className="absolute right-3.5 top-3.5 flex h-7 w-7 items-center justify-center rounded-md text-[#718096] transition hover:bg-slate-100 hover:text-slate-900"
+          className="absolute right-4 top-4 flex h-8 w-8 items-center justify-center rounded-lg text-slate-500 transition-colors duration-200 hover:bg-amber-100 hover:text-slate-950 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#1e40af]"
         >
-          <X size={20} strokeWidth={1.8} />
+          <X size={20} />
         </button>
 
         {/* Heading */}
         <h2
           id="enquiry-modal-title"
-          className="pr-7 text-[21px] font-bold leading-[1.35] tracking-[-0.4px]"
+          className="pr-9 text-[22px] font-bold leading-tight tracking-tight sm:text-2xl"
         >
           Get a Call Back
         </h2>
 
-        <p className="mt-1 text-[14px] leading-5 text-[#718096]">
-          Fill the form and our expert will call you
+        <p className="mt-1.5 text-sm leading-5 text-slate-500">
+          Fill in the form and our expert will call you.
         </p>
 
-        {/* Form */}
-        <form onSubmit={handleSubmit} className="mt-4 space-y-3">
+        {/* Enquiry form */}
+        <form onSubmit={handleSubmit} className="mt-5 space-y-3">
           <input
             required
             minLength={2}
             autoComplete="name"
             placeholder="Your Name *"
             value={form.name}
-            onChange={(e) =>
-              setForm({ ...form, name: e.target.value })
+            onChange={(event) =>
+              setForm({ ...form, name: event.target.value })
             }
-            className={inputClass}
+            className={fieldClass}
           />
 
           <input
@@ -136,10 +199,10 @@ export default function EnquiryModal({
             pattern="[0-9+() -]{8,20}"
             placeholder="Phone Number *"
             value={form.phone}
-            onChange={(e) =>
-              setForm({ ...form, phone: e.target.value })
+            onChange={(event) =>
+              setForm({ ...form, phone: event.target.value })
             }
-            className={inputClass}
+            className={fieldClass}
           />
 
           <input
@@ -147,100 +210,142 @@ export default function EnquiryModal({
             autoComplete="email"
             placeholder="Email (optional)"
             value={form.email}
-            onChange={(e) =>
-              setForm({ ...form, email: e.target.value })
+            onChange={(event) =>
+              setForm({ ...form, email: event.target.value })
             }
-            className={inputClass}
+            className={fieldClass}
           />
 
-          
-          <div className="relative">
-            <select
-                required
-                value={form.requirement}
-                onChange={(e) =>
-                setForm({ ...form, requirement: e.target.value })
+          {/* Custom requirement dropdown */}
+          <div ref={dropdownRef} className="relative">
+            <button
+              type="button"
+              aria-haspopup="listbox"
+              aria-expanded={dropdownOpen}
+              aria-label="Select requirement"
+              onClick={() => {
+                setDropdownOpen((open) => !open);
+                setHighlightedIndex(
+                  Math.max(0, requirements.indexOf(form.requirement))
+                );
+              }}
+              onKeyDown={(event) => {
+                if (event.key === "ArrowDown" && !dropdownOpen) {
+                  event.preventDefault();
+                  setDropdownOpen(true);
+                  setHighlightedIndex(0);
                 }
-                className={`h-[52px] w-full appearance-none rounded-[12px] border border-[#dfe5ed] bg-[#f7f8fa] px-[13px] pr-10 text-[14px] outline-none transition focus:border-[#1677ff] focus:bg-white focus:ring-1 focus:ring-[#1677ff] ${
-                form.requirement
-                    ? "text-[#1f2937]"
-                    : "text-[#718096]"
+              }}
+              className={`flex h-[52px] w-full items-center justify-between gap-3 rounded-xl border bg-[#f8fafc] px-3.5 text-left text-sm outline-none transition-colors duration-200 focus:border-[#1677ff] focus:ring-1 focus:ring-[#1677ff] ${
+                dropdownOpen
+                  ? "border-[#dfe5ed] bg-white"
+                  : "border-[#dfe5ed]"
+              }`}
+            >
+              <span
+                className={
+                  form.requirement ? "text-slate-800" : "text-slate-500"
+                }
+              >
+                {form.requirement || "Select Requirement *"}
+              </span>
+
+              <ChevronDown
+                size={18}
+                className={`shrink-0 text-[#1e40af] transition-transform duration-200 ${
+                  dropdownOpen ? "rotate-180" : ""
                 }`}
-            >
-                <option value="" disabled>
-                Select Requirement *
-                </option>
+              />
+            </button>
 
-                {requirements.map((requirement) => (
-                <option key={requirement} value={requirement}>
-                    {requirement}
-                </option>
-                ))}
-            </select>
+            {dropdownOpen && (
+              <div
+                role="listbox"
+                aria-label="Requirements"
+                className="absolute left-0 right-0 top-full z-50 mt-1 rounded-xl border border-[#dfe5ed] bg-white p-1.5 shadow-xl shadow-slate-900/15"
+              >
+                {requirements.map((requirement, index) => {
+                  const selected = form.requirement === requirement;
+                  const highlighted = highlightedIndex === index;
 
-            <svg
-                aria-hidden="true"
-                className="pointer-events-none absolute right-[15px] top-1/2 h-4 w-4 -translate-y-1/2 text-[#94a3b8]"
-                viewBox="0 0 24 24"
-                fill="none"
-                stroke="currentColor"
-                strokeWidth="2"
-            >
-                <path d="m6 9 6 6 6-6" />
-            </svg>
-         </div>
-
+                  return (
+                    <button
+                      key={requirement}
+                      ref={(element) => {
+                        optionRefs.current[index] = element;
+                      }}
+                      type="button"
+                      role="option"
+                      aria-selected={selected}
+                      onMouseEnter={() => setHighlightedIndex(index)}
+                      onClick={() => selectRequirement(requirement)}
+                      className={`flex min-h-10 w-full items-center justify-between gap-2 rounded-lg px-3 py-2.5 text-left text-sm transition-colors duration-150 ${
+                      highlighted
+                        ? "bg-[#ffbd00] text-slate-950"
+                        : selected
+                          ? "bg-amber-50 font-semibold text-slate-900"
+                          : "text-slate-700 hover:bg-[#ffbd00] hover:text-slate-950"
+                    }`}
+                    >
+                      <span>{requirement}</span>
+                      {selected && (
+                        <Check size={16} className="shrink-0" />
+                      )}
+                    </button>
+                  );
+                })}
+              </div>
+            )}
+          </div>
 
           <textarea
-            rows={1}
+            rows={2}
             placeholder="Message (optional)"
             value={form.message}
-            onChange={(e) =>
-              setForm({ ...form, message: e.target.value })
+            onChange={(event) =>
+              setForm({ ...form, message: event.target.value })
             }
-            className="min-h-[46px] w-full resize-y rounded-[11px] border border-[#dfe5ed] bg-[#f7f8fa] px-[13px] py-3 text-[14px] leading-5 outline-none transition placeholder:text-[#718096] focus:border-blue-400 focus:bg-white focus:ring-2 focus:ring-blue-100"
-          />
+            className="min-h-[68px] w-full resize-y rounded-xl border border-[#dfe5ed] bg-[#f8fafc] px-3.5 py-3 text-sm leading-5 text-slate-800 outline-none transition-colors duration-200 placeholder:text-slate-500 hover:border-[#1e40af] focus:border-[#1677ff] focus:bg-white focus:ring-1 focus:ring-[#1677ff]"  />
 
           <button
             type="submit"
-            className="flex h-[46px] w-full items-center justify-center gap-3 rounded-[11px] bg-[#ffbd00] px-4 text-[14px] font-bold text-gray-950 shadow-sm transition hover:bg-[#f4b500] active:scale-[0.99]"
+            className="flex h-[50px] w-full items-center justify-center gap-2.5 rounded-xl bg-[#ffbd00] px-4 text-sm font-bold text-slate-950 shadow-sm transition-all duration-200 hover:bg-[#f3ae00] hover:shadow-md active:scale-[0.99] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#1e40af] focus-visible:ring-offset-2"
           >
-            <Send size={16} />
+            <Send size={17} />
             Submit Enquiry
           </button>
         </form>
 
-        {/* Divider */}
-        <div className="mb-4 mt-4 border-t border-[#edf0f4]" />
+        {/* Direct-call section */}
+        <div className="mb-4 mt-5 border-t border-slate-200" />
 
-        <p className="mb-2.5 text-center text-[12px] leading-5 text-[#718096]">
+        <p className="mb-3 text-center text-[13px] font-medium text-slate-500">
           Or call us directly
         </p>
 
-        {/* Phone cards */}
-        <div className="grid grid-cols-3 gap-2">
+        <div className="grid grid-cols-1 gap-2.5 min-[380px]:grid-cols-3">
           {PHONE_NUMBERS.map((number) => (
             <a
               key={number}
               href={`tel:${number.replace(/[^+\d]/g, "")}`}
-              className="flex min-h-[52px] min-w-0 flex-col items-center justify-center gap-1 rounded-[11px] border border-[#d9e6ff] bg-[#f3f7ff] px-0.5 py-1.5 text-center transition hover:border-blue-300 hover:bg-blue-50"
+              className="group flex min-h-[62px] min-w-0 flex-col items-center justify-center gap-1.5 rounded-xl border border-[#1e40af]/30 bg-[#f4f7ff] px-2 py-2 text-center text-[12px] font-semibold text-slate-800 transition-all duration-200 hover:border-[#1e40af] hover:bg-[#ffbd00] hover:text-slate-950 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#1e40af]"
             >
               <Phone
-                size={14}
-                className="shrink-0 text-[#1677ff]"
+                size={16}
+                className="shrink-0 text-[#1e40af] transition-colors duration-200 group-hover:text-slate-950"
               />
-
-              <span className="whitespace-nowrap text-[10px] font-semibold tracking-[-0.3px] text-[#1f2937] min-[400px]:text-[11px]">
-                {number}
-              </span>
+              <span className="leading-4">{number}</span>
             </a>
           ))}
         </div>
-      </div>
+      </section>
     </div>,
     document.body
   );
 }
+
+
+
 
 
 

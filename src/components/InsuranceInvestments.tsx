@@ -1,4 +1,5 @@
-import { useRef } from "react";
+import { useRef, useState } from "react";
+import EnquiryModal from "./EnquiryModal";
 import {
   ArrowRight,
   CarFront,
@@ -70,6 +71,7 @@ const benefits = [
 export default function InsuranceInvestments() {
   const sectionRef = useRef<HTMLElement>(null);
   const shouldReduceMotion = useReducedMotion();
+  const [isEnquiryOpen, setIsEnquiryOpen] = useState(false);
 
   const reveal = {
     hidden: {
@@ -223,8 +225,9 @@ export default function InsuranceInvestments() {
           viewport={{ once: true, amount: 0.5 }}
           className="mt-10 flex justify-center sm:mt-12"
         >
-          <a
-            href="#contact"
+          <button
+            type="button"
+            onClick={() => setIsEnquiryOpen(true)}
             className="group inline-flex min-h-12 items-center justify-center gap-3 rounded-xl bg-blue-600 px-7 py-3.5 text-sm font-semibold text-white shadow-sm transition-all duration-300 hover:-translate-y-1 hover:bg-blue-700 hover:shadow-lg focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-600 focus-visible:ring-offset-2"
           >
             Get Started Today
@@ -232,9 +235,15 @@ export default function InsuranceInvestments() {
               size={19}
               className="transition-transform duration-300 group-hover:translate-x-1"
             />
-          </a>
+          </button>
         </motion.div>
       </div>
+
+      <EnquiryModal
+        isOpen={isEnquiryOpen}
+        onClose={() => setIsEnquiryOpen(false)}
+      />
+      
     </section>
   );
 };
