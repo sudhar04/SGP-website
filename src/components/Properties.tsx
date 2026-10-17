@@ -6,6 +6,8 @@ import {
   MapPin,
 } from "lucide-react";
 import { motion, useReducedMotion } from "framer-motion";
+import prop1 from '../assets/prop1.jpeg';
+import prop2 from '../assets/prop2.jpeg';
 
 type Property = {
   title: string;
@@ -13,6 +15,7 @@ type Property = {
   location: string;
   area: string;
   bedrooms?: string;
+  description?: string;
   category: string;
   badge: string;
   badgeColor: string;
@@ -21,25 +24,29 @@ type Property = {
 
 const properties: Property[] = [
   {
-    title: "3BHK Apartment - Bank NPA",
-    price: "₹45 Lakhs",
-    location: "Adyar, Chennai",
-    area: "1250 sqft",
-    bedrooms: "3 BHK",
+    title: "Premium 4 BHK House with 4 Cent Land",
+    location: "Mathukkarai, Coimbatore – Palakkad Road",
+    price: "₹70 Lakhs*",
+    area: "4 Cents",
     category: "Residential",
-    badge: "NPA Deal",
+    badge: "30% OFF",
     badgeColor: "bg-red-500",
-    image: "https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?auto=format&fit=crop&w=900&q=85",
+    description:
+      "East-facing 4-cent residential property with a spacious 4 BHK house and a peaceful, pollution-free atmosphere. Located approximately 500 metres from the L&T Bypass Road, with schools, colleges, hospitals, markets and transport facilities nearby. Bank loan available for eligible buyers.",
+    image: prop2,
   },
   {
-    title: "Industrial Land - 2 Acres",
-    price: "₹80 Lakhs",
-    location: "Sriperumbudur",
-    area: "2 Acres",
-    category: "Land",
-    badge: "Limited Availability",
-    badgeColor: "bg-amber-500",
-    image: "https://images.unsplash.com/photo-1500382017468-9049fed747ef?auto=format&fit=crop&w=900&q=85",
+    title: "3 BHK Individual House for Sale",
+    location: "Peedampalli, near L&T Bypass Road, Coimbatore",
+    price: "Contact for Price",
+    area: "Not specified",
+    bedrooms: "3 BHK",
+    category: "Residential",
+    badge: "Affordable Property",
+    badgeColor: "bg-emerald-500",
+    description:
+      "Affordable 3 BHK individual house for sale in Peedampalli, near L&T Bypass Road. Convenient access to nearby facilities and amenities. Bank loan available for eligible buyers. Contact SGP Promoters, Coimbatore, for pricing and further details.",
+    image: prop1,
   },
   {
     title: "Independent Villa with Garden",

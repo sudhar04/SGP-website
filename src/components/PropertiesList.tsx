@@ -1,4 +1,6 @@
 import { useEffect, useRef, useState } from "react";
+import prop1 from '../assets/prop1.jpeg';
+import prop2 from '../assets/prop2.jpeg';
 import {
   Search,
   SlidersHorizontal,
@@ -20,34 +22,35 @@ type Property = {
   category: string;
   badge: string;
   badgeColor: string;
+  description?: string;
   image: string;
 };
 
 const properties: Property[] = [
   {
     id: 1,
-    title: "3BHK Apartment - Bank NPA Deal",
-    location: "Adyar, Chennai",
-    price: "₹45 Lakhs",
-    area: "1250 sqft",
-    bedrooms: "3 BHK",
+    title: "Premium 4 BHK House with 4 Cent Land",
+    location: "Mathukkarai, Coimbatore — Palakkad Road",
+    price: "₹70 Lakhs*",
+    area: "4 Cents",
     category: "Residential",
-    badge: "NPA Deal",
+    badge: "30% OFF",
     badgeColor: "bg-red-500",
-    image:
-      "https://images.unsplash.com/photo-1545324418-cc1a3fa10c00?auto=format&fit=crop&w=1000&q=85",
+    description:"East-facing 4-cent residential property with a spacious 4 BHK house and a peaceful, pollution-free atmosphere. Located approximately 500 metres from the L&T Bypass Road, with schools, colleges, hospitals, markets and transport facilities nearby. Bank loan available for eligible buyers.",
+    image:prop2,
   },
   {
     id: 2,
-    title: "Industrial Land - 2 Acres",
-    location: "Sriperumbudur",
-    price: "₹80 Lakhs",
-    area: "2 Acres",
-    category: "Land",
-    badge: "Limited Availability",
-    badgeColor: "bg-amber-500",
-    image:
-      "https://images.unsplash.com/photo-1500382017468-9049fed747ef?auto=format&fit=crop&w=1000&q=85",
+    title: "3 BHK Individual House for Sale",
+    location: "Peedampalli, near L&T Bypass Road, Coimbatore",
+    price: "Contact for Price",
+    area: "Not specified",
+    bedrooms: "3 BHK",
+    category: "Residential",
+    badge: "Affordable Property",
+    badgeColor: "bg-emerald-500",
+    description:"Affordable 3 BHK individual house for sale in Peedampalli, near L&T Bypass Road. Convenient access to nearby facilities and amenities. Bank loan available for eligible buyers. Contact SGP Promoters, Coimbatore, for pricing and further details.",
+    image:prop1,
   },
   {
     id: 3,
@@ -342,8 +345,13 @@ const clearFilters = () => {
                   style={{ transitionDelay: isVisible ? `${(index % 3) * 100}ms` : "0ms" }}
                   className={`group flex min-w-0 flex-col overflow-hidden rounded-[19px] border border-slate-200/70 bg-white shadow-sm transition-all duration-700 ease-out hover:-translate-y-2 hover:border-blue-200 hover:shadow-[0_18px_40px_rgba(15,23,42,0.12)] ${isVisible ? "translate-y-0 opacity-100" : "translate-y-8 opacity-0"}`}
                 >
-                  <div className="relative h-[230px] shrink-0 overflow-hidden sm:h-[245px] lg:h-[260px]">
-                    <img src={property.image} alt={property.title} loading="lazy" className="h-full w-full object-cover transition-transform duration-700 ease-out group-hover:scale-110" />
+                  <div className="relative h-[280px] w-full shrink-0 overflow-hidden sm:h-[300px] lg:h-[320px]">
+                    <img
+                      src={property.image}
+                      alt={property.title}
+                      loading="lazy"
+                      className="absolute inset-0 h-full w-full object-cover object-center transition-transform duration-700 ease-out group-hover:scale-105"
+                    />
                     <div className="absolute inset-0 bg-gradient-to-t from-black/65 via-black/5 to-transparent transition-opacity duration-300 group-hover:from-black/75" />
                     <span className={`absolute left-3.5 top-3.5 rounded-full px-3 py-1.5 text-xs font-semibold text-white shadow-sm sm:left-4 sm:top-3.5 ${property.badgeColor}`}>
                       {property.badge}
@@ -356,6 +364,10 @@ const clearFilters = () => {
                     <p className="mt-2 flex items-center gap-1.5 text-sm text-slate-500">
                       <MapPin size={16} className="shrink-0" />
                       <span>{property.location}</span>
+                    </p>
+                    {/* Property Description */}
+                    <p className="mt-2 line-clamp-3 text-sm leading-6 text-gray-600">
+                      {property.description}
                     </p>
                     <div className="mt-3 flex flex-wrap items-center gap-x-3 gap-y-2 text-xs text-slate-500 sm:text-[13px]">
                       <span className="inline-flex items-center gap-1"><Maximize size={14} />{property.area}</span>
