@@ -7,6 +7,7 @@ import {
 import { useNavigate } from "react-router-dom";
 import { useState } from "react";
 import EnquiryModal from "./EnquiryModal";
+import companyLogo from "../assets/SGP logo.png";
 
 const WHATSAPP_NUMBER = "919787747775";
 
@@ -72,10 +73,13 @@ export default function Footer() {
                 className="inline-flex items-center gap-3"
               >
                 {/* Footer logo */}
-                <div className="flex h-12 w-12 shrink-0 items-center justify-center rounded-xl border border-gray-100 bg-white">
-                  <span className="text-base font-bold text-[#C7A65A]">
-                    SGP
-                  </span>
+                <div className="flex h-12 w-12 shrink-0 items-center justify-center
+                  overflow-hidden rounded-lg border border-[#C7A65A]/40 bg-white p-1">
+                  <img
+                    src={companyLogo}
+                    alt="SGP Promoters Logo"
+                    className="h-full w-full object-contain"
+                  />
                 </div>
 
                 <span className="whitespace-nowrap text-base font-bold tracking-tight text-white">

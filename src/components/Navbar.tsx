@@ -2,10 +2,10 @@ import { useEffect, useState } from "react";
 import {
   Menu,
   X,
-  Building2,
   ChevronDown,
 } from "lucide-react";
 import { Link, useLocation, useNavigate } from "react-router-dom";
+import companyLogo from "../assets/SGP logo.png";
 
 const navLinks = [
   { name: "Home", path: "/" },
@@ -84,6 +84,7 @@ export default function Navbar() {
             : "h-[76px] lg:h-[88px]"
         }`}
       >
+        
         {/* Logo and Brand */}
         <Link
           to="/"
@@ -91,24 +92,25 @@ export default function Navbar() {
           aria-label="SGP Promoters Home"
           className="flex shrink-0 items-center gap-3"
         >
-          <div className="flex h-12 w-12 shrink-0 items-center justify-center rounded-xl border border-gray-100 bg-white transition-transform duration-300 hover:scale-105">
-            <Building2
-              size={25}
-              strokeWidth={1.6}
-              className="text-[#C7A65A]"
+          {/* Company Logo */}
+          <div className="flex h-12 w-12 shrink-0 items-center justify-center overflow-hidden rounded-xl border border-gray-100 bg-white transition-transform duration-300 hover:scale-105">
+            <img
+              src={companyLogo}
+              alt="SGP Promoters Logo"
+              className="h-full w-full object-contain p-1"
             />
           </div>
 
+          {/* Brand Name — unchanged */}
           <span
             className={`whitespace-nowrap text-base font-bold tracking-tight transition-colors duration-300 sm:text-[17px] ${
-              transparentNavbar
-                ? "text-white"
-                : "text-gray-900"
+              transparentNavbar ? "text-white" : "text-gray-900"
             }`}
           >
             SGP Promoters
           </span>
         </Link>
+
 
         {/* Desktop Navigation */}
         <div className="hidden items-center gap-1 lg:flex">
