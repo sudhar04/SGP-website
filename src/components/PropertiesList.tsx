@@ -1,6 +1,6 @@
 import { useEffect, useRef, useState } from "react";
-import prop1 from '../assets/prop1.jpeg';
-import prop2 from '../assets/prop2.jpeg';
+import prop1 from '../assets/prop-1.png';
+import prop2 from '../assets/prop-2.png';
 import {
   Search,
   SlidersHorizontal,

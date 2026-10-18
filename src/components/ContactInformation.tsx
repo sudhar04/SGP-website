@@ -37,7 +37,7 @@ export default function ContactInformation() {
     "https://wa.me/919787747775";
 
   const mapUrl =
-    "https://www.google.com/maps/search/?api=1&query=Chennai+Park+Railway+Station";
+    "https://www.google.com/maps/search/kgcomplex+Moor+Market+Ganapathy+Coimbatore+641006/@11.0383777,76.9660971,15z/data=!3m1!4b1?entry=ttu&g_ep=EgoyMDI2MTAxMy4wIKXMDSoASAFQAw%3D%3D";
 
   const details = [
     {
@@ -49,14 +49,14 @@ export default function ContactInformation() {
     {
       icon: Mail,
       label: "Email",
-      title: "info@stargroups.in",
+      title: "stargroups2001@gmail.com",
       subtitle: "We reply within 2 hours",
     },
     {
       icon: MapPin,
       label: "Office",
-      title: "123 Business Park, Main Road",
-      subtitle: "City - 600001",
+      title: "K.G.Complex, Moor Market, Ganapathy ",
+      subtitle: "Coimbatore - 641006",
     },
     {
       icon: Clock,
@@ -102,7 +102,7 @@ export default function ContactInformation() {
                   </a>
                 ) : item.label === "Email" ? (
                   <a
-                    href="mailto:info@stargroups.in"
+                    href="mailto:stargroups2001@gmail.com"
                     className="break-words text-[16px] font-semibold leading-6 text-[#172333] transition-colors hover:text-[#0866FF]"
                   >
                     {item.title}
@@ -135,7 +135,7 @@ export default function ContactInformation() {
       <div className="group relative mt-7 h-[240px] w-full overflow-hidden rounded-2xl border border-gray-200 bg-white sm:h-[270px]">
         <iframe
           title="SGP Promoters office location"
-          src="https://maps.google.com/maps?q=Chennai%20Park%20Railway%20Station&t=&z=15&ie=UTF8&iwloc=&output=embed"
+          src="https://www.google.com/maps/embed?pb=!1m16!1m12!1m3!1d7832.007187287203!2d76.97124699148816!3d11.038356756507094!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!2m1!1skgcomplex%20Moor%20Market%20Ganapathy%20Coimbatore%20641006!5e0!3m2!1sen!2sin!4v1792231342313!5m2!1sen!2sin"
           className="h-full w-full border-0"
           loading="lazy"
           referrerPolicy="no-referrer-when-downgrade"

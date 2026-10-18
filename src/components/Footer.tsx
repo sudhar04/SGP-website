@@ -180,13 +180,13 @@ export default function Footer() {
                   className="flex items-start gap-3 break-all transition-colors hover:text-white"
                 >
                   <Mail size={16} className="mt-0.5 shrink-0" />
-                  <span>info@stargroups.in</span>
+                  <span>stargroups2001@gmail.com</span>
                 </a>
 
                 <div className="flex items-start gap-3">
                   <MapPin size={17} className="mt-0.5 shrink-0" />
                   <span>
-                    123 Business Park, Main Road, City - 600001
+                    K.G.Complex, Moor Market, Ganapathy, Coimbatore - 641006
                   </span>
                 </div>
               </div>
