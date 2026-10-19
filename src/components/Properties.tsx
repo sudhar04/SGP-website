@@ -6,8 +6,8 @@ import {
   MapPin,
 } from "lucide-react";
 import { motion, useReducedMotion } from "framer-motion";
-import prop1 from '../assets/prop1.jpeg';
-import prop2 from '../assets/prop2.jpeg';
+import prop1 from '../assets/1.png';
+import prop2 from '../assets/3.png';
 
 type Property = {
   title: string;

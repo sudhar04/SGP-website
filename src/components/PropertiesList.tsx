@@ -1,6 +1,6 @@
 import { useEffect, useRef, useState } from "react";
-import prop1 from '../assets/prop-1.png';
-import prop2 from '../assets/prop-2.png';
+import prop1 from '../assets/1.png';
+import prop2 from '../assets/3.png';
 import {
   Search,
   SlidersHorizontal,
@@ -345,12 +345,12 @@ const clearFilters = () => {
                   style={{ transitionDelay: isVisible ? `${(index % 3) * 100}ms` : "0ms" }}
                   className={`group flex min-w-0 flex-col overflow-hidden rounded-[19px] border border-slate-200/70 bg-white shadow-sm transition-all duration-700 ease-out hover:-translate-y-2 hover:border-blue-200 hover:shadow-[0_18px_40px_rgba(15,23,42,0.12)] ${isVisible ? "translate-y-0 opacity-100" : "translate-y-8 opacity-0"}`}
                 >
-                  <div className="relative h-[280px] w-full shrink-0 overflow-hidden sm:h-[300px] lg:h-[320px]">
+                  <div className="relative h-72 overflow-hidden rounded-t-2xl">
                     <img
                       src={property.image}
                       alt={property.title}
                       loading="lazy"
-                      className="absolute inset-0 h-full w-full object-cover object-center transition-transform duration-700 ease-out group-hover:scale-105"
+                      className="block h-full w-full object-cover"
                     />
                     <div className="absolute inset-0 bg-gradient-to-t from-black/65 via-black/5 to-transparent transition-opacity duration-300 group-hover:from-black/75" />
                     <span className={`absolute left-3.5 top-3.5 rounded-full px-3 py-1.5 text-xs font-semibold text-white shadow-sm sm:left-4 sm:top-3.5 ${property.badgeColor}`}>
