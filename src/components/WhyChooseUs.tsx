@@ -289,10 +289,11 @@ export default function WhyChooseUs() {
               </div>
             </div>
 
-            {/* Floating yellow deals badge */}
+            {/* Deals badge: normal flow on mobile to avoid covering the properties link;
+                keep the original floating overlap on tablet and desktop. */}
             <div
-              className="absolute -bottom-[19px] left-1/2 z-20
-                flex min-w-[168px] -translate-x-1/2
+              className="relative z-20 mx-auto mt-4
+                flex min-w-[168px] w-fit
                 flex-col items-center justify-center
                 rounded-[17px] bg-[#ffbd00]
                 px-5 py-[15px] text-center
@@ -300,8 +301,8 @@ export default function WhyChooseUs() {
                 transition-all duration-300
                 hover:-translate-y-1
                 hover:shadow-[0_18px_32px_rgba(0,0,0,0.18)]
-                sm:bottom-[-12px] sm:left-[-26px]
-                sm:min-w-[168px] sm:translate-x-0
+                sm:absolute sm:bottom-[-12px] sm:left-[-26px]
+                sm:mx-0 sm:mt-0 sm:min-w-[168px] sm:translate-x-0
                 sm:items-start sm:px-[25px]
                 sm:py-[17px] sm:text-left
                 lg:left-[-26px]"
