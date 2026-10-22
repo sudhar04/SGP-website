@@ -8,10 +8,10 @@ import {
   Building2,
   Landmark,
   ShieldCheck,
-  MessageCircle,
 } from "lucide-react";
 import { useState } from "react";
 import EnquiryModal from "./EnquiryModal";
+import { FaWhatsapp } from "react-icons/fa";
 
 const trustBadges = [
   { icon: Star, label: "15+ Years" },
@@ -235,7 +235,7 @@ export default function Hero() {
         aria-label="Contact SGP Promoters on WhatsApp"
         className="fixed bottom-5 right-5 z-50 flex h-12 w-12 items-center justify-center rounded-full bg-[#19C768] text-white transition duration-300 hover:scale-105 hover:bg-green-600 sm:bottom-7 sm:right-8 sm:h-14 sm:w-14"
       >
-        <MessageCircle size={24} />
+        <FaWhatsapp size={24} aria-hidden="true" />
       </button>
 
       <EnquiryModal

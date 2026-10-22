@@ -4,9 +4,9 @@ import {
   Mail,
   MapPin,
   Clock,
-  MessageCircle,
   ExternalLink,
 } from "lucide-react";
+import { FaWhatsapp } from "react-icons/fa";
 
 const revealClass =
   "transition-all duration-700 ease-out";
@@ -128,7 +128,7 @@ export default function ContactInformation() {
         rel="noreferrer"
         className="mt-7 flex min-h-[60px] w-full items-center justify-center gap-3 rounded-xl bg-[#20C765] px-5 py-4 text-center text-[16px] font-semibold text-white transition-all duration-300 hover:bg-[#18B957] hover:shadow-lg active:scale-[0.99]"
       >
-        <MessageCircle size={21} />
+        <FaWhatsapp size={23} aria-hidden="true" />
         Chat on WhatsApp
       </a>
 

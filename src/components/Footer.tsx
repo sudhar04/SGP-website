@@ -2,12 +2,12 @@ import {
   Phone,
   Mail,
   MapPin,
-  MessageCircle,
 } from "lucide-react";
 import { useNavigate } from "react-router-dom";
 import { useState } from "react";
 import EnquiryModal from "./EnquiryModal";
 import companyLogo from "../assets/SGP logo.png";
+import { FaWhatsapp } from "react-icons/fa";
 
 const WHATSAPP_NUMBER = "919787747775";
 
@@ -196,7 +196,7 @@ export default function Footer() {
                 onClick={openWhatsApp}
                 className="mt-3 inline-flex items-center gap-2 rounded-xl bg-[#19C768] px-4 py-2 text-sm font-semibold text-white transition-colors duration-200 hover:bg-green-600"
               >
-                <MessageCircle size={16} />
+                <FaWhatsapp size={19} aria-hidden="true" />
                 WhatsApp Us
               </button>
             </div>
@@ -246,7 +246,7 @@ export default function Footer() {
         aria-label="Chat with SGP Promoters on WhatsApp"
         className="fixed bottom-5 right-5 z-40 flex h-12 w-12 items-center justify-center rounded-full bg-[#19C768] text-white shadow-lg transition-transform duration-200 hover:scale-105 hover:bg-green-600 sm:bottom-7 sm:right-8 sm:h-[60px] sm:w-[60px]"
       >
-        <MessageCircle size={25} />
+        <FaWhatsapp size={28} aria-hidden="true" />
       </button>
 
       <EnquiryModal
