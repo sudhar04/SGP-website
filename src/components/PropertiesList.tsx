@@ -133,12 +133,41 @@ function getPriceInLakhs(price: string): number {
 
 export default function PropertiesList() {
   const sectionRef = useRef<HTMLElement>(null);
+  const filtersDropdownRef = useRef<HTMLDivElement>(null);
   const [searchTerm, setSearchTerm] = useState("");
   const [showFilters, setShowFilters] = useState(false);
   const [selectedType, setSelectedType] = useState("All Types");
   const [selectedBudget, setSelectedBudget] = useState("All Budgets");
   const [openDropdown, setOpenDropdown] = useState<"type" | "budget" | null>(null);
   const [visibleCards, setVisibleCards] = useState<number[]>([]);
+
+  // Close an open filter dropdown when the user clicks/taps outside it or presses Escape.
+  useEffect(() => {
+    if (!openDropdown) return;
+
+    const handleOutsidePointerDown = (event: PointerEvent) => {
+      const target = event.target;
+      if (
+        target instanceof Node &&
+        filtersDropdownRef.current &&
+        !filtersDropdownRef.current.contains(target)
+      ) {
+        setOpenDropdown(null);
+      }
+    };
+
+    const handleEscape = (event: KeyboardEvent) => {
+      if (event.key === "Escape") setOpenDropdown(null);
+    };
+
+    document.addEventListener("pointerdown", handleOutsidePointerDown);
+    document.addEventListener("keydown", handleEscape);
+
+    return () => {
+      document.removeEventListener("pointerdown", handleOutsidePointerDown);
+      document.removeEventListener("keydown", handleEscape);
+    };
+  }, [openDropdown]);
 
   const filteredProperties = properties.filter((property) => {
     const query = searchTerm.toLowerCase().trim();
@@ -163,7 +192,7 @@ export default function PropertiesList() {
     return matchesSearch && matchesType && matchesBudget;
   });
 
-useEffect(() => {
+  useEffect(() => {
     const section = sectionRef.current;
     if (!section) return;
 
@@ -193,7 +222,7 @@ useEffect(() => {
     );
   };
 
-const clearFilters = () => {
+  const clearFilters = () => {
     setSearchTerm("");
     setSelectedType("All Types");
     setSelectedBudget("All Budgets");
@@ -261,7 +290,7 @@ const clearFilters = () => {
         >
           <div className="overflow-visible">
             {showFilters && (
-              <div className="grid grid-cols-1 gap-3 sm:grid-cols-2">
+              <div ref={filtersDropdownRef} className="grid grid-cols-1 gap-3 sm:grid-cols-2">
                 <div className="relative">
                   <button
                     type="button"
@@ -279,7 +308,7 @@ const clearFilters = () => {
                           key={type}
                           type="button"
                           onClick={() => { setSelectedType(type); setOpenDropdown(null); }}
-                          className={`flex w-full items-center justify-between rounded-lg px-3 py-2.5 text-left text-sm transition hover:bg-amber-50 ${selectedType === type ? "bg-[#ffbe00] text-slate-950" : "text-slate-800"}`}
+                          className={`flex w-full items-center justify-between rounded-lg px-3 py-2.5 text-left text-sm transition-colors duration-150 hover:bg-[#ffbe00] hover:text-slate-950 ${selectedType === type ? "bg-[#ffbe00] font-semibold text-slate-950" : "text-slate-800"}`}
                         >
                           {type}
                           {selectedType === type && <Check size={16} />}
@@ -306,7 +335,7 @@ const clearFilters = () => {
                           key={budget}
                           type="button"
                           onClick={() => { setSelectedBudget(budget); setOpenDropdown(null); }}
-                          className={`flex w-full items-center justify-between rounded-lg px-3 py-2.5 text-left text-sm transition hover:bg-amber-50 ${selectedBudget === budget ? "bg-[#ffbe00] text-slate-950" : "text-slate-800"}`}
+                          className={`flex w-full items-center justify-between rounded-lg px-3 py-2.5 text-left text-sm transition-colors duration-150 hover:bg-[#ffbe00] hover:text-slate-950 ${selectedBudget === budget ? "bg-[#ffbe00] font-semibold text-slate-950" : "text-slate-800"}`}
                         >
                           {budget}
                           {selectedBudget === budget && <Check size={16} />}

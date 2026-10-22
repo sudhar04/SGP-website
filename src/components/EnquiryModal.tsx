@@ -81,7 +81,7 @@ export default function EnquiryModal({
       }
     };
 
-    const handleOutsideClick = (event: MouseEvent) => {
+    const handleOutsideClick = (event: PointerEvent) => {
       if (
         dropdownRef.current &&
         !dropdownRef.current.contains(event.target as Node)
@@ -91,12 +91,12 @@ export default function EnquiryModal({
     };
 
     window.addEventListener("keydown", handleEscape);
-    document.addEventListener("mousedown", handleOutsideClick);
+    document.addEventListener("pointerdown", handleOutsideClick, true);
 
     return () => {
       document.body.style.overflow = previousOverflow;
       window.removeEventListener("keydown", handleEscape);
-      document.removeEventListener("mousedown", handleOutsideClick);
+      document.removeEventListener("pointerdown", handleOutsideClick, true);
     };
   }, [isOpen, onClose, dropdownOpen, highlightedIndex]);
 
@@ -143,7 +143,7 @@ export default function EnquiryModal({
 
   return createPortal(
     <div
-      className="fixed inset-0 z-[99999] flex items-center justify-center overflow-y-auto bg-slate-950/60 px-3 py-4 backdrop-blur-[4px] sm:px-5"
+      className="fixed inset-0 z-[99999] flex items-center justify-center overflow-y-auto bg-slate-950/60 px-3 py-3 backdrop-blur-[4px] sm:px-5 sm:py-5"
       onMouseDown={(event) => {
         if (event.target === event.currentTarget) onClose();
       }}
@@ -152,7 +152,7 @@ export default function EnquiryModal({
         role="dialog"
         aria-modal="true"
         aria-labelledby="enquiry-modal-title"
-        className="relative my-auto w-full max-w-[480px] rounded-[18px] border border-slate-200 bg-white px-6 py-6 text-slate-900 shadow-2xl sm:px-8 sm:py-7"
+        className="relative my-auto max-h-[calc(100dvh-1.5rem)] w-full max-w-[480px] overflow-y-auto rounded-[18px] border border-slate-200 bg-white px-4 py-5 text-slate-900 shadow-2xl sm:max-h-[calc(100dvh-2.5rem)] sm:px-8 sm:py-7"
         onMouseDown={(event) => event.stopPropagation()}
       >
         {/* Close button */}
@@ -262,7 +262,7 @@ export default function EnquiryModal({
               <div
                 role="listbox"
                 aria-label="Requirements"
-                className="absolute left-0 right-0 top-full z-50 mt-1 rounded-xl border border-[#dfe5ed] bg-white p-1.5 shadow-xl shadow-slate-900/15"
+                className="absolute left-0 right-0 top-full z-50 mt-1 max-h-[min(40dvh,280px)] overflow-y-auto overscroll-contain rounded-xl border border-[#dfe5ed] bg-white p-1.5 shadow-xl shadow-slate-900/15"
               >
                 {requirements.map((requirement, index) => {
                   const selected = form.requirement === requirement;
