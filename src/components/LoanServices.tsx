@@ -194,7 +194,7 @@ export default function LoanServices() {
                         ease: "easeOut",
                       }
                 }
-                className="group flex h-full min-w-0 flex-col overflow-hidden rounded-2xl border border-slate-200/80 bg-white shadow-sm transition-[transform,box-shadow,border-color] duration-300 hover:-translate-y-2 hover:border-blue-200 hover:shadow-xl"
+                className="group flex min-w-0 flex-col overflow-hidden rounded-2xl border border-slate-200/80 bg-white shadow-sm transition-[transform,box-shadow,border-color] duration-300 hover:-translate-y-1 hover:shadow-lg"
               >
                 {/* Image or gradient banner */}
                 <div
@@ -231,7 +231,7 @@ export default function LoanServices() {
                 </div>
 
                 {/* Card content */}
-                <div className="flex flex-1 flex-col p-5 sm:p-5">
+                <div className="flex flex-col p-4 sm:p-5">
                   <h3 className="text-[16px] font-bold leading-6 text-[#101827] transition-colors duration-300 group-hover:text-blue-600">
                     {loan.title}
                   </h3>
@@ -240,9 +240,7 @@ export default function LoanServices() {
                     {loan.description}
                   </p>
 
-                  <div className="mt-auto overflow-hidden">
-                    <div className="mt-4 h-px origin-left scale-x-0 bg-blue-500 transition-transform duration-300 group-hover:scale-x-100" />
-                  </div>
+                  
                 </div>
               </motion.article>
             );
