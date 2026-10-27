@@ -238,7 +238,7 @@ ${property.bedrooms ? `🛏️ Bedrooms: ${property.bedrooms}` : ""}
 Please share more details about this property. Thank you!`;
 
     window.open(
-      `https://wa.me/?text=${encodeURIComponent(message)}`,
+      `https://wa.me/919787747775?text=${encodeURIComponent(message)}`,
       "_blank",
       "noopener,noreferrer"
     );
