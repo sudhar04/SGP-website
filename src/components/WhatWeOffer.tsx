@@ -4,6 +4,16 @@ import { ArrowUpRight } from "lucide-react";
 const services = [
   {
     number: "01",
+    title: "Debt Recovery\nAgency (DRA)",
+    description:
+      "Authorized DRA for all banks — fast, RBI-compliant NPA account recovery.",
+    icon: "🏛️",
+    href: "/services",
+    hoverClass:
+      "hover:bg-gradient-to-br hover:from-red-700 hover:to-red-500",
+  },
+  {
+    number: "02",
     title: "Bank NPA\nProperties",
     description:
       "Below-market bank-seized properties — verified, legal, ready to buy.",
@@ -11,16 +21,6 @@ const services = [
     href: "/properties",
     hoverClass:
       "hover:bg-gradient-to-br hover:from-blue-700 hover:to-blue-500",
-  },
-  {
-    number: "02",
-    title: "All Bank\nLoans",
-    description:
-      "Home, business, and personal loans at best rates — processed in 7 days.",
-    icon: "💰",
-    href: "/services",
-    hoverClass:
-      "hover:bg-gradient-to-br hover:from-emerald-700 hover:to-emerald-500",
   },
   {
     number: "03",
@@ -34,33 +34,23 @@ const services = [
   },
   {
     number: "04",
-    title: "Finance &\nInvestment",
+    title: "All Bank\nLoans",
+    description:
+      "Home, business, and personal loans at best rates — processed in 7 days.",
+    icon: "💰",
+    href: "/services",
+    hoverClass:
+      "hover:bg-gradient-to-br hover:from-emerald-700 hover:to-emerald-500",
+  },
+  {
+    number: "05",
+    title: "Finance &\nInvestment &\nInsurance",
     description:
       "Smart investments — mutual funds, deposits & wealth-building solutions.",
     icon: "📈",
     href: "/services",
     hoverClass:
       "hover:bg-gradient-to-br hover:from-purple-700 hover:to-purple-500",
-  },
-  {
-    number: "05",
-    title: "Marketing for\nProperties",
-    description:
-      "Strategic listing, lead generation & digital campaigns to sell your property faster.",
-    icon: "📣",
-    href: "/services",
-    hoverClass:
-      "hover:bg-gradient-to-br hover:from-pink-600 hover:to-pink-500",
-  },
-  {
-    number: "06",
-    title: "Debt Recovery\nAgency (DRA)",
-    description:
-      "Authorized DRA for all banks — fast, RBI-compliant NPA account recovery.",
-    icon: "🏛️",
-    href: "/services",
-    hoverClass:
-      "hover:bg-gradient-to-br hover:from-red-700 hover:to-red-500",
   },
 ];
 
