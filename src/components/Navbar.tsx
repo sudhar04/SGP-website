@@ -52,19 +52,28 @@ export default function Navbar() {
     }
   }, [location.pathname, isHomePage]);
 
+  
   const handleContactClick = () => {
     setIsMobileMenuOpen(false);
 
     if (location.pathname === "/") {
-      document.getElementById("contact")?.scrollIntoView({
-        behavior: "smooth",
-        block: "start",
-      });
+      const contactSection = document.getElementById("contact");
+
+      if (contactSection) {
+        contactSection.scrollIntoView({
+          behavior: "smooth",
+          block: "start",
+        });
+      } else {
+        navigate("/contact");
+        window.scrollTo({ top: 0, behavior: "smooth" });
+      }
     } else {
       navigate("/contact");
       window.scrollTo({ top: 0, behavior: "smooth" });
     }
   };
+
 
   // Transparent only at the top of the homepage
   const transparentNavbar = isHomePage && !isScrolled;
@@ -101,16 +110,35 @@ export default function Navbar() {
             />
           </div>
 
-          {/* Brand Name — unchanged */}
-          <span
-            className={`whitespace-nowrap text-base font-bold tracking-tight transition-colors duration-300 sm:text-[17px] ${
-              transparentNavbar ? "text-white" : "text-gray-900"
+          {/* Responsive Brand Names */}
+
+          <div className="flex min-w-0 flex-col items-start justify-center leading-tight">
+            <span
+              className={`whitespace-nowrap text-sm font-bold tracking-tight sm:text-base lg:text-[17px] ${
+                transparentNavbar ? "text-white" : "text-gray-900"
+              }`}
+            >
+              SGP Promoters
+            </span>
+
+            <span
+            className={`my-0.5 w-full text-center text-xs font-bold leading-none transition-colors duration-300 sm:text-sm ${
+              transparentNavbar ? "text-white" : "text-black"
             }`}
           >
-            SGP Promoters
+            &
           </span>
-        </Link>
 
+            <span
+              className={`whitespace-nowrap text-[10px] font-medium sm:text-xs lg:text-sm ${
+                transparentNavbar ? "text-white/85" : "text-gray-600"
+              }`}
+            >
+              Shine Fin Services
+            </span>
+          </div>
+
+        </Link>
 
         {/* Desktop Navigation */}
         <div className="hidden items-center gap-1 lg:flex">

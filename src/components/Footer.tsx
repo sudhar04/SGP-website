@@ -73,19 +73,34 @@ export default function Footer() {
                 className="inline-flex items-center gap-3"
               >
                 {/* Footer logo */}
-                <div className="flex h-12 w-12 shrink-0 items-center justify-center
-                  overflow-hidden rounded-lg border border-[#C7A65A]/40 bg-white p-1">
+              <div className="flex min-w-0 items-center gap-3">
+                {/* Company Logo */}
+                <div className="flex h-12 w-12 shrink-0 items-center justify-center overflow-hidden rounded-lg border border-[#C7A65A]/40 bg-white p-1 sm:h-14 sm:w-14">
                   <img
                     src={companyLogo}
                     alt="SGP Promoters Logo"
                     className="h-full w-full object-contain"
+                    loading="lazy"
                   />
                 </div>
 
-                <span className="whitespace-nowrap text-base font-bold tracking-tight text-white">
-                  SGP Promoters
-                </span>
-              </a>
+                {/* Brand Names */}
+                <div className="flex min-w-0 flex-col items-start justify-center leading-tight">
+                  <span className="whitespace-nowrap text-sm font-bold tracking-tight text-white sm:text-base lg:text-[17px]">
+                    SGP Promoters
+                  </span>
+
+                  <span className="my-0.5 w-full text-center text-xs font-bold leading-none text-white sm:text-sm">
+                    &
+                  </span>
+
+                  <span className="whitespace-nowrap text-[10px] font-medium tracking-tight text-gray-300 sm:text-xs lg:text-sm">
+                    Shine Fin Services
+                  </span>
+                </div>
+              </div>
+            </a>  
+
 
               <p className="mt-4 max-w-[290px] text-[15px] leading-[1.7] text-gray-400">
                 Your trusted partner for verified bank properties,
