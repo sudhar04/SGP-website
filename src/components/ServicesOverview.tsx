@@ -3,19 +3,19 @@ import { useEffect, useRef, useState } from "react";
 const services = [
   {
     number: "01",
+    icon: "🏛️",
+    title: "Debt Recovery Agency (DRA)",
+    description:
+      "Authorized DRA for all banks — fast, RBI-compliant NPA account recovery.",
+    gradient: "from-[#B91F24] to-[#D83232]",
+  },
+  {
+    number: "02",
     icon: "🏢",
     title: "Bank NPA Properties",
     description:
       "Below-market bank-seized properties — verified, legal, ready to buy.",
     gradient: "from-[#2454CC] to-[#3679E8]",
-  },
-  {
-    number: "02",
-    icon: "💰",
-    title: "All Bank Loans",
-    description:
-      "Home, business, and personal loans at best rates — processed in 7 days.",
-    gradient: "from-[#08765B] to-[#10A879]",
   },
   {
     number: "03",
@@ -27,27 +27,19 @@ const services = [
   },
   {
     number: "04",
-    icon: "📈",
-    title: "Finance & Investment",
+    icon: "💰",
+    title: "All Bank Loans",
     description:
-      "Smart investments — mutual funds, deposits & wealth-building solutions.",
-    gradient: "from-[#6926C9] to-[#9849E5]",
+      "Home, business, and personal loans at best rates — processed in 7 days.",
+    gradient: "from-[#08765B] to-[#10A879]",
   },
   {
     number: "05",
-    icon: "📢",
-    title: "Marketing for Properties",
+    icon: "📈",
+    title: "Finance & Investment & Insurance",
     description:
-      "Strategic listing, lead generation & digital campaigns to sell your property faster.",
-    gradient: "from-[#C9194C] to-[#D83F91]",
-  },
-  {
-    number: "06",
-    icon: "🏛️",
-    title: "Debt Recovery Agency (DRA)",
-    description:
-      "Authorized DRA for all banks — fast, RBI-compliant NPA account recovery.",
-    gradient: "from-[#B91F24] to-[#D83232]",
+      "Smart investments — mutual funds, deposits & wealth-building solutions.",
+    gradient: "from-[#6926C9] to-[#9849E5]",
   },
 ];
 
