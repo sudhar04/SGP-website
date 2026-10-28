@@ -4,7 +4,6 @@ import {
   Landmark,
   HandCoins,
   GraduationCap,
-  Megaphone,
   Gavel,
   CircleCheck,
   ArrowRight,
@@ -12,6 +11,24 @@ import {
 import EnquiryModal from "./EnquiryModal";
 
 const services = [
+  {
+    id: "dra",
+    title: "Debt Recovery Agency (DRA)",
+    description:
+      "SGP Promoters is an authorized Debt Recovery Agency (DRA) providing professional NPA account recovery services for all banks and financial institutions, strictly under RBI & SARFAESI guidelines.",
+    icon: Gavel,
+    color: "text-red-600",
+    iconBg: "bg-rose-50",
+    features: [
+      "Authorized for all banks & NBFCs",
+      "RBI-compliant recovery process",
+      "Soft & hard recovery",
+      "Legal notice & SARFAESI support",
+      "Field investigations & tracking",
+      "Property possession & auction support",
+    ],
+    reverse: true,
+  },
   {
     id: "bank-npa",
     title: "Bank NPA Properties",
@@ -31,24 +48,6 @@ const services = [
     reverse: false,
   },
   {
-    id: "bank-loans",
-    title: "All Bank Loans",
-    description:
-      "We partner with 20+ banks to offer you the best interest rates and fastest loan processing for home loans, business loans, and personal loans.",
-    icon: Landmark,
-    color: "text-emerald-600",
-    iconBg: "bg-emerald-50",
-    features: [
-      "Home Loans from 8.5%",
-      "Business Loans",
-      "Personal Loans",
-      "Loan Against Property",
-      "Fast processing in 7 days",
-      "Minimal documentation",
-    ],
-    reverse: true,
-  },
-  {
     id: "property-consultancy",
     title: "Property Consultancy",
     description:
@@ -64,11 +63,29 @@ const services = [
       "Registration support",
       "Post-sale management",
     ],
+    reverse: true,
+  },
+  {
+    id: "bank-loans",
+    title: "All Bank Loans",
+    description:
+      "We partner with 20+ banks to offer you the best interest rates and fastest loan processing for home loans, business loans, and personal loans.",
+    icon: Landmark,
+    color: "text-emerald-600",
+    iconBg: "bg-emerald-50",
+    features: [
+      "Home Loans from 8.5%",
+      "Business Loans",
+      "Personal Loans",
+      "Loan Against Property",
+      "Fast processing in 7 days",
+      "Minimal documentation",
+    ],
     reverse: false,
   },
   {
     id: "finance",
-    title: "Finance & Investment",
+    title: "Finance & Investment & Insurance",
     description:
       "Smart investment and wealth-building solutions — from mutual funds and fixed deposits to share trading and tax-saving investments, tailored to grow your money.",
     icon: GraduationCap,
@@ -81,42 +98,6 @@ const services = [
       "Share trading guidance",
       "Wealth management",
       "Tax-saving investments",
-    ],
-    reverse: true,
-  },
-  {
-    id: "marketing",
-    title: "Marketing for Properties",
-    description:
-      "Strategic property marketing — professional listings, targeted lead generation, digital campaigns, and sales support to help you sell your property faster and at the best price.",
-    icon: Megaphone,
-    color: "text-rose-600",
-    iconBg: "bg-rose-50",
-    features: [
-      "Professional photography & listing",
-      "Targeted digital campaigns",
-      "Lead generation & qualification",
-      "Pan-India buyer network",
-      "Negotiation & closing support",
-      "Dedicated sales manager",
-    ],
-    reverse: false,
-  },
-  {
-    id: "dra",
-    title: "Debt Recovery Agency (DRA)",
-    description:
-      "SGP Promoters is an authorized Debt Recovery Agency (DRA) providing professional NPA account recovery services for all banks and financial institutions, strictly under RBI & SARFAESI guidelines.",
-    icon: Gavel,
-    color: "text-red-600",
-    iconBg: "bg-rose-50",
-    features: [
-      "Authorized for all banks & NBFCs",
-      "RBI-compliant recovery process",
-      "Soft & hard recovery",
-      "Legal notice & SARFAESI support",
-      "Field investigations & tracking",
-      "Property possession & auction support",
     ],
     reverse: true,
   },
