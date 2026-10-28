@@ -94,7 +94,7 @@ export default function Footer() {
                     &
                   </span>
 
-                  <span className="whitespace-nowrap text-[10px] font-medium tracking-tight text-gray-300 sm:text-xs lg:text-sm">
+                  <span className="whitespace-nowrap text-sm font-bold tracking-tight text-white sm:text-base lg:text-[17px]">
                     Shine Fin Services
                   </span>
                 </div>

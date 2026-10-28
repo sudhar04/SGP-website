@@ -130,8 +130,8 @@ export default function Navbar() {
           </span>
 
             <span
-              className={`whitespace-nowrap text-[10px] font-medium sm:text-xs lg:text-sm ${
-                transparentNavbar ? "text-white/85" : "text-gray-600"
+              className={`whitespace-nowrap text-sm font-bold tracking-tight sm:text-base lg:text-[17px] ${
+                transparentNavbar ? "text-white" : "text-gray-900"
               }`}
             >
               Shine Fin Services
