@@ -10,10 +10,16 @@ import {
   MapPin,
   Maximize,
   BedDouble,
+  House,
+  CalendarClock,
+  CheckCircle2,
 } from "lucide-react";
+
+type PropertyStatus = "live" | "upcoming" | "closed";
 
 type Property = {
   id: number;
+  status: PropertyStatus;
   title: string;
   location: string;
   price: string;
@@ -29,6 +35,7 @@ type Property = {
 const properties: Property[] = [
   {
     id: 1,
+    status: "live",
     title: "Premium 4 BHK House with 4 Cent Land",
     location: "Mathukkarai, Coimbatore — Palakkad Road",
     price: "₹70 Lakhs*",
@@ -41,6 +48,7 @@ const properties: Property[] = [
   },
   {
     id: 2,
+    status: "live",
     title: "3 BHK Individual House for Sale",
     location: "Peedampalli, near L&T Bypass Road, Coimbatore",
     price: "Contact for Price",
@@ -54,6 +62,7 @@ const properties: Property[] = [
   },
   {
     id: 3,
+    status: "live",
     title: "Retail Shop in Prime Location",
     location: "T. Nagar, Chennai",
     price: "₹75 Lakhs",
@@ -66,6 +75,7 @@ const properties: Property[] = [
   },
   {
     id: 4,
+    status: "upcoming",
     title: "Independent Villa with Garden",
     location: "ECR, Chennai",
     price: "₹2.5 Crores",
@@ -79,6 +89,7 @@ const properties: Property[] = [
   },
   {
     id: 5,
+    status: "closed",
     title: "2BHK Flat - NPA Deal",
     location: "Tambaram, Chennai",
     price: "₹22 Lakhs",
@@ -92,6 +103,7 @@ const properties: Property[] = [
   },
   {
     id: 6,
+    status: "live",
     title: "Commercial Office Space",
     location: "Anna Nagar, Chennai",
     price: "₹1.2 Crore",
@@ -134,6 +146,7 @@ function getPriceInLakhs(price: string): number {
 export default function PropertiesList() {
   const sectionRef = useRef<HTMLElement>(null);
   const filtersDropdownRef = useRef<HTMLDivElement>(null);
+  const [activeStatus, setActiveStatus] = useState<PropertyStatus>("live");
   const [searchTerm, setSearchTerm] = useState("");
   const [showFilters, setShowFilters] = useState(false);
   const [selectedType, setSelectedType] = useState("All Types");
@@ -170,6 +183,7 @@ export default function PropertiesList() {
   }, [openDropdown]);
 
   const filteredProperties = properties.filter((property) => {
+    const matchesStatus = property.status === activeStatus;
     const query = searchTerm.toLowerCase().trim();
     const matchesSearch =
       property.title.toLowerCase().includes(query) ||
@@ -189,7 +203,7 @@ export default function PropertiesList() {
       (selectedBudget === "1-3 Crores" && price > 100 && price <= 300) ||
       (selectedBudget === "Above 3 Crores" && price > 300);
 
-    return matchesSearch && matchesType && matchesBudget;
+    return matchesStatus && matchesSearch && matchesType && matchesBudget;
   });
 
   useEffect(() => {
@@ -211,7 +225,7 @@ export default function PropertiesList() {
 
     elements.forEach((element) => observer.observe(element));
     return () => observer.disconnect();
-  }, [filteredProperties.length]);
+  }, [filteredProperties.length, activeStatus]);
 
   const handleEnquiry = (property: Property) => {
     const message = `Hello SGP Promoters, I'm interested in this property:\n\n${property.title}\nLocation: ${property.location}\nPrice: ${property.price}\n\nPlease share more details.`;
@@ -236,7 +250,49 @@ export default function PropertiesList() {
     >
       {/* Keep the same horizontal alignment as the navbar logo/container. */}
       <div className="mx-auto w-full max-w-[1360px] px-5 sm:px-8 lg:px-10 xl:px-12">
-        {/* Search and filter button */}
+        {/* Property status tabs: responsive on mobile, tablet, and desktop */}
+        <div className="mb-5 sm:mb-7">
+          <div
+            role="tablist"
+            aria-label="Property status"
+            className="grid grid-cols-3 gap-2 rounded-2xl border border-slate-200 bg-white p-1.5 shadow-sm sm:gap-3 sm:p-2"
+          >
+            {[
+              { id: "live", label: "Live Properties", shortLabel: "Live", Icon: House },
+              { id: "upcoming", label: "Upcoming Properties", shortLabel: "Upcoming", Icon: CalendarClock },
+              { id: "closed", label: "Closed Properties", shortLabel: "Closed", Icon: CheckCircle2 },
+            ].map(({ id, label, shortLabel, Icon }) => {
+              const isActive = activeStatus === id;
+              const count = properties.filter((property) => property.status === id).length;
+
+              return (
+                <button
+                  key={id}
+                  type="button"
+                  role="tab"
+                  aria-selected={isActive}
+                  onClick={() => setActiveStatus(id as PropertyStatus)}
+                  className={`flex min-h-[54px] min-w-0 items-center justify-center gap-1.5 rounded-xl px-1.5 py-2 text-center text-[11px] font-semibold transition-colors duration-200 sm:gap-2 sm:px-3 sm:text-sm lg:text-[15px] ${
+                    isActive
+                      ? "bg-[#FFBE00] text-slate-950 shadow-sm"
+                      : "text-slate-600 hover:bg-amber-50 hover:text-slate-950"
+                  }`}
+                >
+                  <Icon size={16} className="shrink-0 sm:h-[18px] sm:w-[18px]" />
+                  <span className="min-w-0">
+                    <span className="sm:hidden">{shortLabel}</span>
+                    <span className="hidden sm:inline">{label}</span>
+                  </span>
+                  <span className={`hidden rounded-full px-2 py-0.5 text-[11px] sm:inline-flex ${isActive ? "bg-black/10" : "bg-slate-100"}`}>
+                    {count}
+                  </span>
+                </button>
+              );
+            })}
+          </div>
+        </div>
+
+{/* Search and filter button */}
         <div
           data-reveal
           data-id={100}
@@ -340,7 +396,7 @@ export default function PropertiesList() {
                           {budget}
                           {selectedBudget === budget && <Check size={16} />}
                         </button>
-                      ))}
+                        ))}
                     </div>
                   )}
                 </div>
@@ -352,7 +408,7 @@ export default function PropertiesList() {
         {/* Results count */}
         <div className="mb-6 mt-8 flex flex-wrap items-center justify-between gap-3 sm:mb-7 sm:mt-9">
           <p className="text-sm text-slate-500 sm:text-[15px]">
-            {filteredProperties.length} {filteredProperties.length === 1 ? "property" : "properties"} found
+            {filteredProperties.length} {filteredProperties.length === 1 ? "property" : "properties"} {activeStatus === "live" ? "available" : activeStatus === "upcoming" ? "upcoming" : "closed"}
           </p>
           {(searchTerm || selectedType !== "All Types" || selectedBudget !== "All Budgets") && (
             <button type="button" onClick={clearFilters} className="text-sm font-medium text-blue-600 transition hover:text-blue-800 hover:underline">
@@ -385,6 +441,11 @@ export default function PropertiesList() {
                     <span className={`absolute left-3.5 top-3.5 rounded-full px-3 py-1.5 text-xs font-semibold text-white shadow-sm sm:left-4 sm:top-3.5 ${property.badgeColor}`}>
                       {property.badge}
                     </span>
+                    <span className={`absolute right-3 top-3 rounded-full px-2.5 py-1 text-[10px] font-bold text-white shadow-sm sm:right-4 sm:top-3.5 sm:text-xs ${
+                      property.status === "live" ? "bg-emerald-600" : property.status === "upcoming" ? "bg-blue-600" : "bg-slate-700"
+                    }`}>
+                      {property.status === "live" ? "Available" : property.status === "upcoming" ? "Coming Soon" : "Closed"}
+                    </span>
                     <p className="absolute bottom-0 left-0 right-0 px-4 pb-4 text-xl font-bold tracking-tight text-white drop-shadow-md">{property.price}</p>
                   </div>
 
@@ -403,9 +464,19 @@ export default function PropertiesList() {
                       {property.bedrooms && <span className="inline-flex items-center gap-1"><BedDouble size={15} />{property.bedrooms}</span>}
                       <span className="rounded-full bg-slate-100 px-2.5 py-1 text-xs text-slate-500">{property.category}</span>
                     </div>
-                    <button type="button" onClick={() => handleEnquiry(property)} className="mt-4 inline-flex min-h-[40px] w-full items-center justify-center rounded-[11px] bg-[#ffbe00] px-4 py-2.5 text-sm font-semibold text-slate-950 transition-all duration-300 hover:-translate-y-0.5 hover:bg-[#f5b400] hover:shadow-lg active:scale-[0.98] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-amber-500 focus-visible:ring-offset-2">
-                      Enquire Now
-                    </button>
+                    {property.status === "closed" ? (
+                      <div className="mt-4 inline-flex min-h-[40px] w-full items-center justify-center rounded-[11px] bg-slate-100 px-4 py-2.5 text-sm font-semibold text-slate-500">
+                        Property Closed
+                      </div>
+                    ) : (
+                      <button
+                        type="button"
+                        onClick={() => handleEnquiry(property)}
+                        className="mt-4 inline-flex min-h-[40px] w-full items-center justify-center rounded-[11px] bg-[#ffbe00] px-4 py-2.5 text-sm font-semibold text-slate-950 transition-all duration-300 hover:-translate-y-0.5 hover:bg-[#f5b400] hover:shadow-lg active:scale-[0.98] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-amber-500 focus-visible:ring-offset-2"
+                      >
+                        {property.status === "upcoming" ? "Enquire About Upcoming" : "Enquire Now"}
+                      </button>
+                    )}
                   </div>
                 </article>
               );
