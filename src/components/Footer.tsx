@@ -6,7 +6,7 @@ import {
 import { useNavigate } from "react-router-dom";
 import { useState } from "react";
 import EnquiryModal from "./EnquiryModal";
-import companyLogo from "../assets/SGP logo.png";
+import companyLogo from "../assets/logo.jpeg";
 import { FaWhatsapp } from "react-icons/fa";
 
 const WHATSAPP_NUMBER = "919787747775";
@@ -74,12 +74,12 @@ export default function Footer() {
               >
                 {/* Footer logo */}
               <div className="flex min-w-0 items-center gap-3">
-                {/* Company Logo */}
-                <div className="flex h-12 w-12 shrink-0 items-center justify-center overflow-hidden rounded-lg border border-[#C7A65A]/40 bg-white p-1 sm:h-14 sm:w-14">
+                {/* Footer Company Logo */}
+                <div className="flex h-14 w-14 shrink-0 items-center justify-center overflow-hidden rounded-xl border border-[#C7A65A]/40 bg-white p-0 sm:h-16 sm:w-16 lg:h-14 lg:w-14">
                   <img
                     src={companyLogo}
                     alt="SGP Promoters Logo"
-                    className="h-full w-full object-contain"
+                    className="h-full w-full object-contain p-0"
                     loading="lazy"
                   />
                 </div>

@@ -5,7 +5,7 @@ import {
   ChevronDown,
 } from "lucide-react";
 import { Link, useLocation, useNavigate } from "react-router-dom";
-import companyLogo from "../assets/SGP logo.png";
+import companyLogo from "../assets/logo.jpeg";
 
 const navLinks = [
   { name: "Home", path: "/" },
@@ -102,11 +102,11 @@ export default function Navbar() {
           className="flex shrink-0 items-center gap-3"
         >
           {/* Company Logo */}
-          <div className="flex h-12 w-12 shrink-0 items-center justify-center overflow-hidden rounded-xl border border-gray-100 bg-white transition-transform duration-300 hover:scale-105">
+          <div className="flex h-14 w-14 shrink-0 items-center justify-center overflow-hidden rounded-xl border border-gray-100 bg-white transition-transform duration-300 hover:scale-105 sm:h-16 sm:w-16 lg:h-14 lg:w-14">
             <img
               src={companyLogo}
               alt="SGP Promoters Logo"
-              className="h-full w-full object-contain p-1"
+              className="h-full w-full object-contain p-0"
             />
           </div>
 
