@@ -4,12 +4,18 @@ import {
   BedDouble,
   Maximize,
   MapPin,
+  CalendarClock,
+  CheckCircle2,
+  Clock3,
 } from "lucide-react";
 import { motion, useReducedMotion } from "framer-motion";
 import prop1 from '../assets/1.png';
 import prop2 from '../assets/3.png';
 
+type PropertyStatus = "live" | "upcoming" | "closed";
+
 type Property = {
+  status: PropertyStatus;
   title: string;
   price: string;
   location: string;
@@ -24,6 +30,7 @@ type Property = {
 
 const properties: Property[] = [
   {
+    status: "live",
     title: "Premium 4 BHK House with 4 Cent Land",
     location: "Mathukkarai, Coimbatore – Palakkad Road",
     price: "₹70 Lakhs*",
@@ -36,6 +43,7 @@ const properties: Property[] = [
     image: prop2,
   },
   {
+    status: "live",
     title: "3 BHK Individual House for Sale",
     location: "Peedampalli, near L&T Bypass Road, Coimbatore",
     price: "Contact for Price",
@@ -49,6 +57,7 @@ const properties: Property[] = [
     image: prop1,
   },
   {
+    status: "live",
     title: "Independent Villa with Garden",
     price: "₹2.5 Crores",
     location: "ECR, Chennai",
@@ -60,6 +69,7 @@ const properties: Property[] = [
     image: "https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?auto=format&fit=crop&w=900&q=85",
   },
   {
+    status: "live",
     title: "Commercial Office Space",
     price: "₹1.2 Crore",
     location: "Anna Nagar, Chennai",
@@ -70,6 +80,7 @@ const properties: Property[] = [
     image: "https://images.unsplash.com/photo-1497366754035-f200968a6e72?auto=format&fit=crop&w=900&q=85",
   },
   {
+    status: "live",
     title: "3BHK Bank NPA Apartment",
     price: "₹38 Lakhs",
     location: "RS Puram, Coimbatore",
@@ -81,6 +92,7 @@ const properties: Property[] = [
     image: "https://images.unsplash.com/photo-1600607687920-4e2a09cf159d?auto=format&fit=crop&w=900&q=85",
   },
   {
+    status: "live",
     title: "Commercial Showroom Space",
     price: "₹75 Lakhs",
     location: "Gandhipuram, Coimbatore",
@@ -91,6 +103,7 @@ const properties: Property[] = [
     image: "https://images.unsplash.com/photo-1441986300917-64674bd600d8?auto=format&fit=crop&w=900&q=85",
   },
   {
+    status: "live",
     title: "Independent Villa - 4BHK",
     price: "₹1.8 Crores",
     location: "Saravanampatti, Coimbatore",
@@ -102,6 +115,7 @@ const properties: Property[] = [
     image: "https://images.unsplash.com/photo-1600607687644-c7171b42498f?auto=format&fit=crop&w=900&q=85",
   },
   {
+    status: "upcoming",
     title: "Residential Plot - 1200 sqft",
     price: "₹28 Lakhs",
     location: "Peelamedu, Coimbatore",
@@ -112,6 +126,7 @@ const properties: Property[] = [
     image: "https://images.unsplash.com/photo-1500382017468-9049fed747ef?auto=format&fit=crop&w=900&q=85",
   },
   {
+    status: "closed",
     title: "Textile Mill Godown",
     price: "₹1.2 Crores",
     location: "Tiruppur Road, Coimbatore",
@@ -122,6 +137,7 @@ const properties: Property[] = [
     image: "https://images.unsplash.com/photo-1586528116311-ad8dd3c8310d?auto=format&fit=crop&w=900&q=85",
   },
   {
+    status: "live",
     title: "2BHK Bank Auction Flat",
     price: "₹29 Lakhs",
     location: "Singanallur, Coimbatore",
@@ -133,6 +149,7 @@ const properties: Property[] = [
     image: "https://images.unsplash.com/photo-1600210492486-724fe5c67fb0?auto=format&fit=crop&w=900&q=85",
   },
   {
+    status: "live",
     title: "Commercial Office - 1st Floor",
     price: "₹55 Lakhs",
     location: "Avinashi Road, Coimbatore",
@@ -143,6 +160,7 @@ const properties: Property[] = [
     image: "https://images.unsplash.com/photo-1497366811353-6870744d04b2?auto=format&fit=crop&w=900&q=85",
   },
   {
+    status: "upcoming",
     title: "Agricultural Land - 3 Acres",
     price: "₹45 Lakhs",
     location: "Pollachi, Coimbatore",
@@ -153,6 +171,7 @@ const properties: Property[] = [
     image: "https://images.unsplash.com/photo-1500382017468-9049fed747ef?auto=format&fit=crop&w=900&q=85",
   },
   {
+    status: "closed",
     title: "3BHK Premium Apartment",
     price: "₹85 Lakhs",
     location: "Race Course, Coimbatore",
@@ -164,6 +183,7 @@ const properties: Property[] = [
     image: "https://images.unsplash.com/photo-1600566753086-00f18fb6b3ea?auto=format&fit=crop&w=900&q=85",
   },
   {
+    status: "live",
     title: "Bank NPA Shop Complex",
     price: "₹42 Lakhs",
     location: "Ukkadam, Coimbatore",
@@ -174,6 +194,7 @@ const properties: Property[] = [
     image: "https://images.unsplash.com/photo-1441986300917-64674bd600d8?auto=format&fit=crop&w=900&q=85",
   },
   {
+    status: "upcoming",
     title: "Warehouse - 8000 sqft",
     price: "₹1.1 Crores",
     location: "Kinathukadavu, Coimbatore",
@@ -184,6 +205,7 @@ const properties: Property[] = [
     image: "https://images.unsplash.com/photo-1586528116311-ad8dd3c8310d?auto=format&fit=crop&w=900&q=85",
   },
   {
+    status: "closed",
     title: "1BHK Compact Flat",
     price: "₹18 Lakhs",
     location: "Podanur, Coimbatore",
@@ -199,7 +221,38 @@ const properties: Property[] = [
 export default function Properties() {
   const sectionRef = useRef<HTMLElement>(null);
   const [isVisible, setIsVisible] = useState(false);
+  const [activeStatus, setActiveStatus] = useState<PropertyStatus>("live");
   const prefersReducedMotion = useReducedMotion();
+
+  const statusTabs: {
+    id: PropertyStatus;
+    label: string;
+    description: string;
+    icon: typeof CheckCircle2;
+  }[] = [
+    {
+      id: "live",
+      label: "Live Properties",
+      description: "Currently available properties",
+      icon: CheckCircle2,
+    },
+    {
+      id: "upcoming",
+      label: "Upcoming Properties",
+      description: "Properties coming soon",
+      icon: CalendarClock,
+    },
+    {
+      id: "closed",
+      label: "Closed Properties",
+      description: "Sold or closed properties",
+      icon: Clock3,
+    },
+  ];
+
+  const filteredProperties = properties.filter(
+    (property) => property.status === activeStatus
+  );
 
   useEffect(() => {
     const section = sectionRef.current;
@@ -267,198 +320,198 @@ Please share more details about this property. Thank you!`;
         {/* Section heading */}
         <motion.div
           initial={revealInitial}
-          animate={
-            isVisible
-              ? { opacity: 1, y: 0 }
-              : undefined
-          }
+          animate={isVisible ? { opacity: 1, y: 0 } : undefined}
           transition={{ duration: 0.55, ease: "easeOut" }}
-          className="mb-8 flex flex-col items-start justify-between gap-4 sm:mb-10 sm:flex-row sm:items-end"
+          className="mb-7 flex flex-col items-start justify-between gap-4 sm:mb-9 sm:flex-row sm:items-end"
         >
           <div>
             <p className="mb-2 text-sm font-medium text-blue-600 sm:text-base">
-              Featured Listings
+              Property Listings
             </p>
-
             <h2 className="text-3xl font-bold tracking-tight text-gray-950 sm:text-4xl">
-              Top Properties
+              Explore Properties
             </h2>
+            <p className="mt-2 max-w-xl text-sm leading-6 text-slate-500 sm:text-base">
+              Browse available listings, discover upcoming properties, and view completed deals.
+            </p>
           </div>
-
-          <a
-            href="#all-properties"
-            className="
-              group inline-flex shrink-0 items-center justify-center gap-3
-              rounded-xl border border-gray-200 bg-gray-50
-              px-5 py-2.5 text-sm font-medium text-gray-900
-              transition-all duration-300 ease-out
-              hover:-translate-y-0.5 hover:border-gray-300
-              hover:bg-white hover:shadow-md
-              active:translate-y-0
-              focus-visible:outline-none focus-visible:ring-2
-              focus-visible:ring-blue-500 focus-visible:ring-offset-2
-            "
-          >
-            View All
-            <ArrowRight
-              size={17}
-              className="transition-transform duration-300 group-hover:translate-x-1"
-            />
-          </a>
         </motion.div>
 
-        {/* Responsive property grid */}
+        {/* Responsive status tabs */}
         <div
-          id="all-properties"
-          className="
-            grid grid-cols-1
-            gap-5
-            sm:grid-cols-2 sm:gap-6
-            lg:grid-cols-3
-            xl:grid-cols-4
-          "
+          className="mb-7 grid grid-cols-1 gap-3 sm:mb-9 sm:grid-cols-3 sm:gap-4"
+          role="tablist"
+          aria-label="Filter properties by status"
         >
-          {properties.map((property, index) => (
-            <motion.article
-              key={`${property.title}-${index}`}
-              initial={revealInitial}
-              animate={
-                isVisible
-                  ? { opacity: 1, y: 0 }
-                  : undefined
-              }
-              transition={{
-                duration: 0.5,
-                delay: prefersReducedMotion
-                  ? 0
-                  : (index % 4) * 0.07,
-                ease: "easeOut",
-              }}
-              whileHover={
-                prefersReducedMotion
-                  ? undefined
-                  : {
-                      y: -5,
-                      transition: { duration: 0.22 },
-                    }
-              }
-              className="
-                group relative flex min-w-0 flex-col
-                overflow-hidden rounded-[18px]
-                border border-gray-100 bg-white
-                shadow-sm
-                transition-shadow duration-300
-                hover:shadow-lg
-              "
-            >
-              {/* Property image */}
-              <div className="relative h-[225px] shrink-0 overflow-hidden sm:h-[220px] xl:h-[233px]">
-                <img
-                  src={property.image}
-                  alt={property.title}
-                  loading="lazy"
-                  className="
-                    h-full w-full object-cover object-center
-                    transition-transform duration-500 ease-out
-                    group-hover:scale-[1.045]
-                  "
-                />
+          {statusTabs.map((tab) => {
+            const Icon = tab.icon;
+            const isActive = activeStatus === tab.id;
+            const count = properties.filter(
+              (property) => property.status === tab.id
+            ).length;
 
-                {/* Dark gradient for readable price */}
-                <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-black/55 via-transparent to-transparent opacity-90 transition-opacity duration-300 group-hover:opacity-100" />
-
-                {/* Deal badge */}
+            return (
+              <button
+                key={tab.id}
+                type="button"
+                role="tab"
+                id={`property-tab-${tab.id}`}
+                aria-selected={isActive}
+                aria-controls="property-results"
+                onClick={() => setActiveStatus(tab.id)}
+                className={`flex min-w-0 items-center gap-3 rounded-2xl border p-4 text-left transition-all duration-200 sm:p-5 ${
+                  isActive
+                    ? "border-blue-600 bg-blue-50 shadow-sm ring-1 ring-blue-600/10"
+                    : "border-gray-200 bg-white hover:border-gray-300 hover:bg-gray-50"
+                }`}
+              >
                 <span
-                  className={`
-                    absolute left-3 top-3 z-10
-                    max-w-[calc(100%-24px)] truncate
-                    rounded-full px-3 py-1.5
-                    text-xs font-semibold text-white
-                    shadow-sm sm:left-3.5 sm:top-3.5
-                    ${property.badgeColor}
-                  `}
+                  className={`flex h-11 w-11 shrink-0 items-center justify-center rounded-xl ${
+                    isActive ? "bg-blue-600 text-white" : "bg-gray-100 text-gray-600"
+                  }`}
                 >
-                  {property.badge}
+                  <Icon size={21} aria-hidden="true" />
                 </span>
+                <span className="min-w-0 flex-1">
+                  <span className={`block text-sm font-bold sm:text-base ${isActive ? "text-blue-700" : "text-gray-900"}`}>
+                    {tab.label}
+                  </span>
+                  <span className="mt-1 block text-xs leading-5 text-slate-500 sm:text-sm">
+                    {tab.description}
+                  </span>
+                </span>
+                <span className={`shrink-0 rounded-full px-2.5 py-1 text-xs font-bold ${isActive ? "bg-blue-600 text-white" : "bg-gray-100 text-gray-600"}`}>
+                  {count}
+                </span>
+              </button>
+            );
+          })}
+        </div>
 
-                {/* Price */}
-                <p className="absolute bottom-3 left-3.5 z-10 text-lg font-bold text-white drop-shadow-md sm:bottom-4 sm:text-xl">
-                  {property.price}
+{/* Responsive property grid */}
+        <div
+          id="property-results"
+          role="tabpanel"
+          aria-labelledby={`property-tab-${activeStatus}`}
+          className="scroll-mt-28"
+        >
+          {filteredProperties.length > 0 ? (
+            <>
+              <div className="mb-4 flex flex-wrap items-center justify-between gap-2">
+                <p className="text-sm text-slate-500" aria-live="polite">
+                  <span className="font-semibold text-gray-900">{filteredProperties.length}</span>{" "}
+                  {filteredProperties.length === 1 ? "property" : "properties"} found
                 </p>
+                <a
+                  href="#property-results"
+                  className="group inline-flex items-center gap-2 rounded-lg px-3 py-2 text-sm font-semibold text-blue-600 transition-colors hover:bg-blue-50 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500"
+                >
+                  {statusTabs.find((tab) => tab.id === activeStatus)?.label}
+                  <ArrowRight size={16} className="transition-transform group-hover:translate-x-1" />
+                </a>
               </div>
 
-              {/* Property details */}
-              <div className="flex flex-1 flex-col p-4 sm:p-[17px]">
-                <h3
-                  title={property.title}
-                  className="
-                    mb-2 truncate text-base font-semibold
-                    text-gray-950 sm:text-[17px]
-                  "
-                >
-                  {property.title}
-                </h3>
-
-                <p className="mb-3 flex min-w-0 items-center gap-1.5 text-sm text-slate-500">
-                  <MapPin
-                    size={16}
-                    className="shrink-0 text-slate-500"
-                  />
-
-                  <span className="truncate">
-                    {property.location}
-                  </span>
-                </p>
-
-                {/* Area, bedrooms and category */}
-                <div className="mb-4 flex min-h-6 flex-wrap items-center gap-x-3 gap-y-2 text-xs text-slate-500 sm:text-[13px]">
-                  <span className="inline-flex items-center gap-1.5">
-                    <Maximize
-                      size={14}
-                      className="shrink-0"
-                    />
-                    {property.area}
-                  </span>
-
-                  {property.bedrooms && (
-                    <span className="inline-flex items-center gap-1.5">
-                      <BedDouble
-                        size={15}
-                        className="shrink-0"
+              <div className="grid grid-cols-1 gap-5 sm:grid-cols-2 sm:gap-6 lg:grid-cols-3 xl:grid-cols-4">
+                {filteredProperties.map((property, index) => (
+                  <motion.article
+                    key={`${property.title}-${index}`}
+                    initial={revealInitial}
+                    animate={isVisible ? { opacity: 1, y: 0 } : undefined}
+                    transition={{
+                      duration: 0.5,
+                      delay: prefersReducedMotion ? 0 : (index % 4) * 0.07,
+                      ease: "easeOut",
+                    }}
+                    whileHover={prefersReducedMotion ? undefined : { y: -5, transition: { duration: 0.22 } }}
+                    className="group relative flex min-w-0 flex-col overflow-hidden rounded-[18px] border border-gray-100 bg-white shadow-sm transition-shadow duration-300 hover:shadow-lg"
+                  >
+                    {/* Property image */}
+                    <div className="relative h-[220px] shrink-0 overflow-hidden sm:h-[220px] xl:h-[233px]">
+                      <img
+                        src={property.image}
+                        alt={property.title}
+                        loading="lazy"
+                        decoding="async"
+                        className="h-full w-full object-cover object-center transition-transform duration-500 ease-out group-hover:scale-[1.045]"
                       />
-                      {property.bedrooms}
-                    </span>
-                  )}
+                      <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-black/55 via-transparent to-transparent opacity-90 transition-opacity duration-300 group-hover:opacity-100" />
 
-                  <span className="rounded-full bg-gray-100 px-2.5 py-1 text-slate-500 transition-colors duration-200 group-hover:bg-blue-50 group-hover:text-blue-600">
-                    {property.category}
-                  </span>
-                </div>
+                      <span className={`absolute left-3 top-3 z-10 max-w-[calc(100%-24px)] truncate rounded-full px-3 py-1.5 text-xs font-semibold text-white shadow-sm sm:left-3.5 sm:top-3.5 ${property.badgeColor}`}>
+                        {property.badge}
+                      </span>
 
-                {/* Enquire button */}
-                <button
-                  type="button"
-                  onClick={() => handleEnquiry(property)}
-                  className="
-                    mt-auto inline-flex w-full items-center
-                    justify-center rounded-xl
-                    bg-[#FFBE00] px-4 py-2.5
-                    text-sm font-semibold text-gray-950
-                    shadow-sm
-                    transition-all duration-200 ease-out
-                    hover:-translate-y-0.5 hover:bg-[#F5B400]
-                    hover:shadow-md
-                    active:translate-y-0 active:scale-[0.99]
-                    focus-visible:outline-none
-                    focus-visible:ring-2 focus-visible:ring-amber-500
-                    focus-visible:ring-offset-2
-                  "
-                >
-                  Enquire Now
-                </button>
+                      {property.status !== "live" && (
+                        <span className={`absolute right-3 top-3 z-10 rounded-full px-3 py-1.5 text-xs font-bold text-white shadow-sm ${property.status === "upcoming" ? "bg-blue-600" : "bg-slate-700"}`}>
+                          {property.status === "upcoming" ? "Coming Soon" : "Closed"}
+                        </span>
+                      )}
+
+                      <p className="absolute bottom-3 left-3.5 z-10 text-lg font-bold text-white drop-shadow-md sm:bottom-4 sm:text-xl">
+                        {property.price}
+                      </p>
+                    </div>
+
+                    {/* Property details */}
+                    <div className="flex flex-1 flex-col p-4 sm:p-[17px]">
+                      <h3 title={property.title} className="mb-2 truncate text-base font-semibold text-gray-950 sm:text-[17px]">
+                        {property.title}
+                      </h3>
+
+                      <p className="mb-3 flex min-w-0 items-center gap-1.5 text-sm text-slate-500">
+                        <MapPin size={16} className="shrink-0 text-slate-500" />
+                        <span className="truncate">{property.location}</span>
+                      </p>
+
+                      <div className="mb-4 flex min-h-6 flex-wrap items-center gap-x-3 gap-y-2 text-xs text-slate-500 sm:text-[13px]">
+                        <span className="inline-flex items-center gap-1.5">
+                          <Maximize size={14} className="shrink-0" />
+                          {property.area}
+                        </span>
+                        {property.bedrooms && (
+                          <span className="inline-flex items-center gap-1.5">
+                            <BedDouble size={15} className="shrink-0" />
+                            {property.bedrooms}
+                          </span>
+                        )}
+                        <span className="rounded-full bg-gray-100 px-2.5 py-1 text-slate-500 transition-colors duration-200 group-hover:bg-blue-50 group-hover:text-blue-600">
+                          {property.category}
+                        </span>
+                      </div>
+
+                      {property.status === "live" ? (
+                        <button
+                          type="button"
+                          onClick={() => handleEnquiry(property)}
+                          className="mt-auto inline-flex w-full items-center justify-center rounded-xl bg-[#FFBE00] px-4 py-2.5 text-sm font-semibold text-gray-950 shadow-sm transition-all duration-200 ease-out hover:-translate-y-0.5 hover:bg-[#F5B400] hover:shadow-md active:translate-y-0 active:scale-[0.99] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-amber-500 focus-visible:ring-offset-2"
+                        >
+                          Enquire Now
+                        </button>
+                      ) : (
+                        <div className={`mt-auto flex w-full items-center justify-center gap-2 rounded-xl px-4 py-2.5 text-sm font-semibold ${property.status === "upcoming" ? "bg-blue-50 text-blue-700" : "bg-slate-100 text-slate-600"}`}>
+                          {property.status === "upcoming" ? <CalendarClock size={16} /> : <CheckCircle2 size={16} />}
+                          {property.status === "upcoming" ? "Coming Soon" : "Deal Closed"}
+                        </div>
+                      )}
+                    </div>
+                  </motion.article>
+                ))}
               </div>
-            </motion.article>
-          ))}
+            </>
+            ) : (
+            <div className="flex min-h-[220px] flex-col items-center justify-center rounded-2xl border border-dashed border-gray-300 bg-gray-50 px-5 py-10 text-center sm:min-h-[280px]">
+              <span className="mb-4 flex h-14 w-14 items-center justify-center rounded-2xl bg-white text-blue-600 shadow-sm">
+                {activeStatus === "upcoming" ? <CalendarClock size={27} /> : <CheckCircle2 size={27} />}
+              </span>
+              <h3 className="text-lg font-bold text-gray-900 sm:text-xl">
+                {activeStatus === "upcoming" ? "Upcoming properties will appear here" : "Closed properties will appear here"}
+              </h3>
+              <p className="mt-2 max-w-md text-sm leading-6 text-slate-500">
+                {activeStatus === "upcoming"
+                  ? "There are no upcoming listings published yet. Please check back soon."
+                  : "There are no closed listings to display yet."}
+              </p>
+              </div>
+          )}
         </div>
       </div>
     </section>
