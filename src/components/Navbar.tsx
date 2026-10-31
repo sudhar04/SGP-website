@@ -12,7 +12,7 @@ const navLinks = [
   { name: "Properties", path: "/properties" },
   { name: "Services", path: "/services" },
   { name: "About", path: "/about" },
-  { name: "Contact", path: "/contact" },
+  { name: "Testimonials", path: "/testimonials" },
 ];
 
 export default function Navbar() {

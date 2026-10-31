@@ -8,6 +8,7 @@ import About from "./pages/About";
 import Contact from "./pages/Contact";
 import NotFound from "./pages/NotFound";
 import ScrollToTop from "./components/ScrollToTop";
+import Testimonials from "./pages/Testimonials";
 
 export default function App() {
   return (
@@ -37,6 +38,11 @@ export default function App() {
           <Route
             path="/contact"
             element={<Contact />}
+          />
+
+          <Route 
+            path="/testimonials" 
+            element={<Testimonials />} 
           />
 
           <Route path="*" element={<NotFound />} />
