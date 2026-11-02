@@ -457,3 +457,39 @@ The completed website will provide a professional digital presence for Star Grou
 ])
 
 ```
+
+---
+
+## 🌐 Live Production Website
+
+<p align="center">
+  <a href="https://www.sgp-promoters.com/" target="_blank">
+    <img
+      src="https://img.shields.io/badge/LIVE%20WEBSITE-sgp--promoters.com-16A34A?style=for-the-badge&logo=googlechrome&logoColor=white"
+      alt="Visit Live Website"
+    />
+  </a>
+</p>
+
+<p align="center">
+  <strong>🚀 My First Freelance Project — Successfully Deployed!</strong>
+</p>
+
+<p align="center">
+  Proud to have developed and deployed my first freelance web development
+  project using a custom domain, making it accessible to users in a
+  real-world production environment.
+</p>
+
+<p align="center">
+  <a href="https://www.sgp-promoters.com/" target="_blank">
+    <strong>🔗 Visit SGP Promoters →</strong>
+  </a>
+</p>
+
+<p align="center">
+  <sub>From development to domain configuration and production deployment — 
+  a memorable milestone in my freelance journey.</sub>
+</p>
+
+---
