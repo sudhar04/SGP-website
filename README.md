@@ -454,8 +454,6 @@ The completed website will provide a professional digital presence for Star Grou
 
 **Primary objective:** Generate qualified leads through a premium user experience, clear service presentation, and convenient enquiry pathways.
 
-])
-
 
 
 ---
